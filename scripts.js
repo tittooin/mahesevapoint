@@ -14,10 +14,10 @@ function scrollToSection(sectionId) {
     });
 }
 
-// Rent Agreement Calculator
+// Enhanced Rent Agreement Calculator with real-time updates
 function calculateRent() {
     // Get form values
-    const propertyArea = document.getElementById('propertyArea').value.trim();
+    const propertyArea = document.getElementById('propertyArea').value;
     const licensePeriod = parseInt(document.getElementById('licensePeriod').value) || 0;
     const monthlyRent = parseInt(document.getElementById('monthlyRent').value) || 0;
     const deposit = parseInt(document.getElementById('deposit').value) || 0;
@@ -47,18 +47,13 @@ function calculateRent() {
     // Calculate total
     const totalAmount = govtRegFee + dhcFee + serviceFee + stampDuty + addonsTotal;
 
-    // Update display
-    document.getElementById('stampDuty').textContent = `₹${stampDuty.toLocaleString()}`;
-    document.getElementById('addonsTotal').textContent = `₹${addonsTotal.toLocaleString()}`;
-    document.getElementById('totalAmount').textContent = `₹${totalAmount.toLocaleString()}`;
+    // Update displays
+    document.getElementById('stampDutyDisplay').textContent = `₹${stampDuty.toLocaleString()}`;
+    document.getElementById('totalCostDisplay').textContent = `₹${totalAmount.toLocaleString()}`;
+    document.getElementById('finalTotalAmount').textContent = totalAmount.toLocaleString();
 
-    // Show results with animation
-    const resultsDiv = document.getElementById('calculationResults');
-    resultsDiv.style.display = 'block';
-    resultsDiv.classList.add('fade-in');
-    
-    // Scroll to results
-    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Show notification
+    showNotification('Calculation updated successfully!', 'success');
 
     // Log calculation for debugging
     console.log('Rent calculation:', {
@@ -69,6 +64,23 @@ function calculateRent() {
         stampDuty,
         addonsTotal,
         totalAmount
+    });
+}
+
+// Real-time calculation on input change
+function setupRealTimeCalculation() {
+    const inputs = ['licensePeriod', 'monthlyRent', 'deposit'];
+    const checkboxes = document.querySelectorAll('.addon-checkbox');
+    
+    inputs.forEach(inputId => {
+        const input = document.getElementById(inputId);
+        if (input) {
+            input.addEventListener('input', calculateRent);
+        }
+    });
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', calculateRent);
     });
 }
 
@@ -97,6 +109,12 @@ function showServiceModal(serviceName, requiredDocs) {
 
 // Form Submission Handlers
 document.addEventListener('DOMContentLoaded', function() {
+    // Setup real-time calculation
+    setupRealTimeCalculation();
+    
+    // Initial calculation
+    calculateRent();
+
     // Contact form handler
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -112,21 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
         serviceContactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             handleServiceRequest(this);
-        });
-    }
-
-    // Add loading animation to calculation button
-    const rentForm = document.getElementById('rentForm');
-    if (rentForm) {
-        const inputs = rentForm.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('input', function() {
-                // Hide results if inputs change
-                const results = document.getElementById('calculationResults');
-                if (results.style.display === 'block') {
-                    results.style.display = 'none';
-                }
-            });
         });
     }
 
