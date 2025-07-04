@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -209,212 +208,317 @@
     <section id="services" class="py-5 bg-white">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Our Services</h2>
-                <p class="text-muted">Complete range of digital citizen services</p>
+                <h2 class="fw-bold display-5">Our Services</h2>
+                <p class="text-muted fs-5">Complete range of digital citizen services</p>
             </div>
             
-            <div class="row g-4">
-                <!-- Row 1 - Identity Documents -->
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Aadhaar Card', ['Original Birth Certificate', 'Proof of Address', 'Identity Proof', 'Passport Size Photos'])">
-                        <div class="text-center">
-                            <i class="bi bi-person-badge display-4 text-primary mb-3"></i>
-                            <h5 class="fw-semibold">Aadhaar Card</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+            <!-- Identity Documents Section -->
+            <div class="mb-5">
+                <h3 class="fw-bold mb-4 text-primary border-bottom pb-2">
+                    <i class="bi bi-person-badge me-2"></i>Identity Documents
+                </h3>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Aadhaar Card', ['Original Birth Certificate', 'Proof of Address', 'Identity Proof', 'Passport Size Photos'])">
+                            <div class="text-center">
+                                <i class="bi bi-person-badge display-4 text-primary mb-3"></i>
+                                <h5 class="fw-semibold">Aadhaar Card</h5>
+                                <p class="text-muted small">Unique Identity for Citizens</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('PAN Card', ['Aadhaar Card', 'Form 49A', 'Identity Proof', 'Address Proof', 'Passport Size Photos'])">
+                            <div class="text-center">
+                                <i class="bi bi-credit-card display-4 text-warning mb-3"></i>
+                                <h5 class="fw-semibold">PAN Card</h5>
+                                <p class="text-muted small">Permanent Account Number</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Voter ID', ['Aadhaar Card', 'Address Proof', 'Age Proof', 'Passport Size Photos'])">
+                            <div class="text-center">
+                                <i class="bi bi-check2-square display-4 text-info mb-3"></i>
+                                <h5 class="fw-semibold">Voter ID</h5>
+                                <p class="text-muted small">Electoral Photo Identity Card</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Passport', ['Birth Certificate', 'Address Proof', 'Identity Proof', 'NOC from Police', 'Passport Size Photos'])">
+                            <div class="text-center">
+                                <i class="bi bi-journal-bookmark display-4 text-info mb-3"></i>
+                                <h5 class="fw-semibold">Passport</h5>
+                                <p class="text-muted small">International Travel Document</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('PAN Card', ['Aadhaar Card', 'Form 49A', 'Identity Proof', 'Address Proof', 'Passport Size Photos'])">
-                        <div class="text-center">
-                            <i class="bi bi-credit-card display-4 text-warning mb-3"></i>
-                            <h5 class="fw-semibold">PAN Card</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Voter ID', ['Aadhaar Card', 'Address Proof', 'Age Proof', 'Passport Size Photos'])">
-                        <div class="text-center">
-                            <i class="bi bi-check2-square display-4 text-info mb-3"></i>
-                            <h5 class="fw-semibold">Voter ID</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Passport', ['Birth Certificate', 'Address Proof', 'Identity Proof', 'NOC from Police', 'Passport Size Photos'])">
-                        <div class="text-center">
-                            <i class="bi bi-journal-bookmark display-4 text-info mb-3"></i>
-                            <h5 class="fw-semibold">Passport</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
-                        </div>
-                    </div>
-                </div>
+            </div>
 
-                <!-- Row 2 - Certificates -->
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Income Certificate', ['Aadhaar Card', 'Salary Slips/Income Proof', 'Address Proof', 'Bank Statements', 'Passport Size Photos'])">
-                        <div class="text-center">
-                            <i class="bi bi-cash-coin display-4 text-success mb-3"></i>
-                            <h5 class="fw-semibold">Income Certificate</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+            <!-- Certificates Section -->
+            <div class="mb-5">
+                <h3 class="fw-bold mb-4 text-success border-bottom pb-2">
+                    <i class="bi bi-file-earmark-text me-2"></i>Certificates
+                </h3>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Income Certificate', ['Aadhaar Card', 'Salary Slips/Income Proof', 'Address Proof', 'Bank Statements', 'Passport Size Photos'])">
+                            <div class="text-center">
+                                <i class="bi bi-cash-coin display-4 text-success mb-3"></i>
+                                <h5 class="fw-semibold">Income Certificate</h5>
+                                <p class="text-muted small">Annual Income Verification</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Caste Certificate', ['Birth Certificate', 'Aadhaar Card', 'School Leaving Certificate', 'Address Proof', 'Family Details'])">
-                        <div class="text-center">
-                            <i class="bi bi-people display-4 text-secondary mb-3"></i>
-                            <h5 class="fw-semibold">Caste Certificate</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Caste Certificate', ['Birth Certificate', 'Aadhaar Card', 'School Leaving Certificate', 'Address Proof', 'Family Details'])">
+                            <div class="text-center">
+                                <i class="bi bi-people display-4 text-secondary mb-3"></i>
+                                <h5 class="fw-semibold">Caste Certificate</h5>
+                                <p class="text-muted small">Social Category Verification</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Domicile Certificate', ['Birth Certificate', 'Aadhaar Card', 'School Leaving Certificate', 'Address Proof', 'Residence Proof'])">
-                        <div class="text-center">
-                            <i class="bi bi-house display-4 text-primary mb-3"></i>
-                            <h5 class="fw-semibold">Domicile Certificate</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Domicile Certificate', ['Birth Certificate', 'Aadhaar Card', 'School Leaving Certificate', 'Address Proof', 'Residence Proof'])">
+                            <div class="text-center">
+                                <i class="bi bi-house display-4 text-primary mb-3"></i>
+                                <h5 class="fw-semibold">Domicile Certificate</h5>
+                                <p class="text-muted small">Residence Verification</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Non-Creamy Layer Certificate', ['Income Certificate', 'Caste Certificate', 'Aadhaar Card', 'Property Documents', 'Family Details'])">
-                        <div class="text-center">
-                            <i class="bi bi-file-earmark-text display-4 text-warning mb-3"></i>
-                            <h5 class="fw-semibold">Non-Creamy Layer</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Non-Creamy Layer Certificate', ['Income Certificate', 'Caste Certificate', 'Aadhaar Card', 'Property Documents', 'Family Details'])">
+                            <div class="text-center">
+                                <i class="bi bi-file-earmark-text display-4 text-warning mb-3"></i>
+                                <h5 class="fw-semibold">Non-Creamy Layer</h5>
+                                <p class="text-muted small">OBC Category Certificate</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Row 3 - Life Events -->
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Birth Certificate', ['Hospital Birth Certificate', 'Parents Aadhaar Card', 'Marriage Certificate', 'Address Proof'])">
-                        <div class="text-center">
-                            <i class="bi bi-heart display-4 text-danger mb-3"></i>
-                            <h5 class="fw-semibold">Birth Certificate</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+            <!-- Business & Professional Services Section -->
+            <div class="mb-5">
+                <h3 class="fw-bold mb-4 text-danger border-bottom pb-2">
+                    <i class="bi bi-briefcase me-2"></i>Business & Professional Services
+                </h3>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Shop Act License', ['Partnership Deed/MOA', 'NOC from Owner', 'Identity Proof', 'Address Proof', 'Passport Size Photos'])">
+                            <div class="text-center">
+                                <i class="bi bi-shop display-4 text-success mb-3"></i>
+                                <h5 class="fw-semibold">Shop Act License</h5>
+                                <p class="text-muted small">Shop & Establishment License</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Udyam Registration', ['Aadhaar Card', 'Business Details', 'Bank Account Details', 'Investment Proof'])">
+                            <div class="text-center">
+                                <i class="bi bi-building display-4 text-danger mb-3"></i>
+                                <h5 class="fw-semibold">Udyam Registration</h5>
+                                <p class="text-muted small">MSME Registration</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Death Certificate', ['Hospital Death Certificate', 'Aadhaar Card of Deceased', 'Identity Proof of Applicant', 'Address Proof'])">
-                        <div class="text-center">
-                            <i class="bi bi-peace display-4 text-secondary mb-3"></i>
-                            <h5 class="fw-semibold">Death Certificate</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('GST Registration', ['PAN Card', 'Aadhaar Card', 'Business Registration', 'Bank Account Details', 'Address Proof'])">
+                            <div class="text-center">
+                                <i class="bi bi-receipt display-4 text-warning mb-3"></i>
+                                <h5 class="fw-semibold">GST Registration</h5>
+                                <p class="text-muted small">Goods & Services Tax</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Marriage Registration', ['Joint Application', 'Age Proof of Both', 'Address Proof', 'Photographs', 'Witness Documents'])">
-                        <div class="text-center">
-                            <i class="bi bi-suit-heart display-4 text-danger mb-3"></i>
-                            <h5 class="fw-semibold">Marriage Registration</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Trade License', ['Shop Act License', 'NOC from Fire Department', 'Building Permission', 'Identity Proof', 'Address Proof'])">
+                            <div class="text-center">
+                                <i class="bi bi-briefcase display-4 text-primary mb-3"></i>
+                                <h5 class="fw-semibold">Trade License</h5>
+                                <p class="text-muted small">Municipal Trade License</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Senior Citizen Card', ['Age Proof (Birth Certificate)', 'Aadhaar Card', 'Address Proof', 'Income Certificate', 'Passport Size Photos'])">
-                        <div class="text-center">
-                            <i class="bi bi-person-wheelchair display-4 text-info mb-3"></i>
-                            <h5 class="fw-semibold">Senior Citizen Card</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Food License (FSSAI)', ['Shop Act License', 'Water Test Report', 'Medical Certificate', 'NOC from Fire Department', 'Layout Plan'])">
+                            <div class="text-center">
+                                <i class="bi bi-cup-hot display-4 text-warning mb-3"></i>
+                                <h5 class="fw-semibold">Food License (FSSAI)</h5>
+                                <p class="text-muted small">Food Safety License</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Row 4 - Business & Professional -->
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Shop Act License', ['Partnership Deed/MOA', 'NOC from Owner', 'Identity Proof', 'Address Proof', 'Passport Size Photos'])">
-                        <div class="text-center">
-                            <i class="bi bi-shop display-4 text-success mb-3"></i>
-                            <h5 class="fw-semibold">Shop Act License</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+            <!-- Employment & Financial Services Section -->
+            <div class="mb-5">
+                <h3 class="fw-bold mb-4 text-info border-bottom pb-2">
+                    <i class="bi bi-bank me-2"></i>Employment & Financial Services
+                </h3>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('PF Service (EPF)', ['Aadhaar Card', 'PAN Card', 'Bank Account Details', 'Employment Details', 'Salary Certificate'])">
+                            <div class="text-center">
+                                <i class="bi bi-piggy-bank display-4 text-success mb-3"></i>
+                                <h5 class="fw-semibold">PF Service (EPF)</h5>
+                                <p class="text-muted small">Employees Provident Fund</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Udyam Registration', ['Aadhaar Card', 'Business Details', 'Bank Account Details', 'Investment Proof'])">
-                        <div class="text-center">
-                            <i class="bi bi-building display-4 text-danger mb-3"></i>
-                            <h5 class="fw-semibold">Udyam Registration</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('GST Registration', ['PAN Card', 'Aadhaar Card', 'Business Registration', 'Bank Account Details', 'Address Proof'])">
-                        <div class="text-center">
-                            <i class="bi bi-receipt display-4 text-warning mb-3"></i>
-                            <h5 class="fw-semibold">GST Registration</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('ESI Registration', ['Aadhaar Card', 'Employment Certificate', 'Medical Certificate', 'Passport Size Photos'])">
+                            <div class="text-center">
+                                <i class="bi bi-heart-pulse display-4 text-danger mb-3"></i>
+                                <h5 class="fw-semibold">ESI Registration</h5>
+                                <p class="text-muted small">Employee State Insurance</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Trade License', ['Shop Act License', 'NOC from Fire Department', 'Building Permission', 'Identity Proof', 'Address Proof'])">
-                        <div class="text-center">
-                            <i class="bi bi-briefcase display-4 text-primary mb-3"></i>
-                            <h5 class="fw-semibold">Trade License</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+            <!-- Property & Land Services Section -->
+            <div class="mb-5">
+                <h3 class="fw-bold mb-4 text-warning border-bottom pb-2">
+                    <i class="bi bi-houses me-2"></i>Property & Land Services
+                </h3>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Land Record Services', ['Property Documents', 'Survey Settlement Number', 'Revenue Records', 'Identity Proof', 'Address Proof'])">
+                            <div class="text-center">
+                                <i class="bi bi-map display-4 text-success mb-3"></i>
+                                <h5 class="fw-semibold">Land Record Services</h5>
+                                <p class="text-muted small">Property Record Verification</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Row 5 - Welfare & Other Services -->
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Ration Card', ['Aadhaar Card', 'Income Certificate', 'Address Proof', 'Family Details', 'Passport Size Photos'])">
-                        <div class="text-center">
-                            <i class="bi bi-card-list display-4 text-secondary mb-3"></i>
-                            <h5 class="fw-semibold">Ration Card</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Property Registration', ['Sale Deed', 'Title Documents', 'NOC from Society', 'Identity Proof', 'Address Proof'])">
+                            <div class="text-center">
+                                <i class="bi bi-houses display-4 text-primary mb-3"></i>
+                                <h5 class="fw-semibold">Property Registration</h5>
+                                <p class="text-muted small">Property Transfer Registration</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Driving License', ['Aadhaar Card', 'Address Proof', 'Age Proof', 'Medical Certificate', 'Passport Size Photos'])">
-                        <div class="text-center">
-                            <i class="bi bi-car-front display-4 text-primary mb-3"></i>
-                            <h5 class="fw-semibold">Driving License</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Disability Certificate', ['Medical Certificate', 'Aadhaar Card', 'Address Proof', 'Passport Size Photos', 'Medical Reports'])">
-                        <div class="text-center">
-                            <i class="bi bi-universal-access display-4 text-info mb-3"></i>
-                            <h5 class="fw-semibold">Disability Certificate</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Mutation of Property', ['Property Documents', 'Death Certificate (if applicable)', 'Legal Heir Certificate', 'NOC from Co-owners'])">
+                            <div class="text-center">
+                                <i class="bi bi-arrow-left-right display-4 text-info mb-3"></i>
+                                <h5 class="fw-semibold">Mutation of Property</h5>
+                                <p class="text-muted small">Property Ownership Transfer</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="service-card h-100" onclick="showServiceModal('Property Registration', ['Sale Deed', 'Title Documents', 'NOC from Society', 'Identity Proof', 'Address Proof'])">
-                        <div class="text-center">
-                            <i class="bi bi-houses display-4 text-success mb-3"></i>
-                            <h5 class="fw-semibold">Property Registration</h5>
-                            <button class="btn btn-success btn-sm mt-2">View Details</button>
+            <!-- Other Essential Services Section -->
+            <div class="mb-5">
+                <h3 class="fw-bold mb-4 text-secondary border-bottom pb-2">
+                    <i class="bi bi-gear me-2"></i>Other Essential Services
+                </h3>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Ration Card', ['Aadhaar Card', 'Income Certificate', 'Address Proof', 'Family Details', 'Passport Size Photos'])">
+                            <div class="text-center">
+                                <i class="bi bi-card-list display-4 text-secondary mb-3"></i>
+                                <h5 class="fw-semibold">Ration Card</h5>
+                                <p class="text-muted small">Public Distribution System</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Driving License', ['Aadhaar Card', 'Address Proof', 'Age Proof', 'Medical Certificate', 'Passport Size Photos'])">
+                            <div class="text-center">
+                                <i class="bi bi-car-front display-4 text-primary mb-3"></i>
+                                <h5 class="fw-semibold">Driving License</h5>
+                                <p class="text-muted small">Motor Vehicle License</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Birth Certificate', ['Hospital Birth Certificate', 'Parents Aadhaar Card', 'Marriage Certificate', 'Address Proof'])">
+                            <div class="text-center">
+                                <i class="bi bi-heart display-4 text-danger mb-3"></i>
+                                <h5 class="fw-semibold">Birth Certificate</h5>
+                                <p class="text-muted small">Birth Registration Certificate</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Death Certificate', ['Hospital Death Certificate', 'Aadhaar Card of Deceased', 'Identity Proof of Applicant', 'Address Proof'])">
+                            <div class="text-center">
+                                <i class="bi bi-peace display-4 text-secondary mb-3"></i>
+                                <h5 class="fw-semibold">Death Certificate</h5>
+                                <p class="text-muted small">Death Registration Certificate</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Marriage Registration', ['Joint Application', 'Age Proof of Both', 'Address Proof', 'Photographs', 'Witness Documents'])">
+                            <div class="text-center">
+                                <i class="bi bi-suit-heart display-4 text-danger mb-3"></i>
+                                <h5 class="fw-semibold">Marriage Registration</h5>
+                                <p class="text-muted small">Marriage Certificate</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Disability Certificate', ['Medical Certificate', 'Aadhaar Card', 'Address Proof', 'Passport Size Photos', 'Medical Reports'])">
+                            <div class="text-center">
+                                <i class="bi bi-universal-access display-4 text-info mb-3"></i>
+                                <h5 class="fw-semibold">Disability Certificate</h5>
+                                <p class="text-muted small">Disability Assessment Certificate</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
