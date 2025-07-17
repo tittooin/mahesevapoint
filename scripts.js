@@ -1,4 +1,3 @@
-
 // MahesevaPoint JavaScript Functions
 
 // Smooth scrolling function
@@ -89,8 +88,17 @@ function showServiceModal(serviceName, requiredDocs, description = null) {
     // Set modal title
     document.getElementById('serviceModalTitle').textContent = serviceName;
 
-    // Populate required documents
+    // Clear previous content
     const docsList = document.getElementById('requiredDocuments');
+    const modalBody = docsList.parentNode;
+    
+    // Remove any existing description
+    const existingDescription = modalBody.querySelector('.alert-primary');
+    if (existingDescription) {
+        existingDescription.remove();
+    }
+    
+    // Clear documents list
     docsList.innerHTML = '';
     
     requiredDocs.forEach(doc => {
@@ -185,21 +193,30 @@ function handleServiceRequest(form) {
     submitBtn.classList.add('loading');
     submitBtn.disabled = true;
 
-    // Simulate API call
+    // Prepare email data
+    const emailData = {
+        service: serviceName,
+        name: formData.get('name') || form.querySelector('input[placeholder="Your Name"]').value,
+        mobile: formData.get('mobile') || form.querySelector('input[placeholder="Mobile Number"]').value,
+        message: formData.get('message') || form.querySelector('textarea').value,
+        timestamp: new Date().toISOString()
+    };
+
+    // Simulate API call to send email to vwadekar753@gmail.com
     setTimeout(() => {
         // Remove loading state
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;
 
         // Show success message
-        showNotification(`Your request for ${serviceName} has been submitted successfully. Our team will contact you shortly.`, 'success');
+        showNotification(`Your request for ${serviceName} has been submitted successfully. Our team will contact you shortly at ${emailData.mobile}.`, 'success');
         
         // Reset form and close modal
         form.reset();
         bootstrap.Modal.getInstance(document.getElementById('serviceModal')).hide();
 
-        // Log submission
-        console.log('Service request submitted for:', serviceName);
+        // Log submission (in real implementation, this would send email to vwadekar753@gmail.com)
+        console.log('Service request submitted to vwadekar753@gmail.com:', emailData);
     }, 1500);
 }
 

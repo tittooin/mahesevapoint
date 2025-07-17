@@ -218,38 +218,49 @@
                 </h3>
                 <div class="row g-4">
                     <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="service-card h-100" onclick="showServiceModal('Aadhaar Card', ['Original documents for verification', 'Address proof documents', 'Identity proof documents', 'Photograph', 'Mobile number for OTP'])">
+                        <div class="service-card h-100" onclick="showServiceModal('Aadhaar Card', ['Address Proof (Rent agreement, Light bill, etc)', 'Bank details', 'PAN Card'], 'Our Aadhaar services include: Demographic Changes, Aadhaar – PAN Link, Aadhaar – Bank Link')">
                             <div class="text-center">
                                 <i class="bi bi-person-badge display-4 text-primary mb-3"></i>
                                 <h5 class="fw-semibold">Aadhaar Card</h5>
-                                <p class="text-muted small">Unique Identity for Citizens</p>
+                                <p class="text-muted small">Demographic Changes • Aadhaar – PAN Link • Aadhaar – Bank Link</p>
                                 <button class="btn btn-success btn-sm mt-2">View Details</button>
                             </div>
                         </div>
                     </div>
                     
                     <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="service-card h-100" onclick="showServiceModal('PAN Card', ['Identity proof', 'Address proof', 'Date of birth proof', 'Passport size photographs', 'Form 49A (for Indian citizens)'])">
+                        <div class="service-card h-100" onclick="showServiceModal('PAN Card', ['Aadhaar Card', 'Address Proof', 'Age proof', 'Photo'], 'Our PAN services include: New PAN Card, Changes in Existing PAN Card')">
                             <div class="text-center">
                                 <i class="bi bi-credit-card display-4 text-warning mb-3"></i>
                                 <h5 class="fw-semibold">PAN Card</h5>
-                                <p class="text-muted small">Permanent Account Number</p>
+                                <p class="text-muted small">New PAN Card • Changes in Existing PAN Card</p>
                                 <button class="btn btn-success btn-sm mt-2">View Details</button>
                             </div>
                         </div>
                     </div>
                     
                     <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="service-card h-100" onclick="showServiceModal('Voter ID', ['Address proof', 'Age proof', 'Identity proof', 'Passport size photographs', 'Form 6 (for new registration)'])">
+                        <div class="service-card h-100" onclick="showServiceModal('Voter ID', ['Aadhaar Card', 'PAN Card', 'Light Bill', 'Photo'], 'Our Voter ID services include: New Voter Registration, Changes in existing Voter ID')">
                             <div class="text-center">
                                 <i class="bi bi-check2-square display-4 text-info mb-3"></i>
                                 <h5 class="fw-semibold">Voter ID</h5>
-                                <p class="text-muted small">Electoral Photo Identity Card</p>
+                                <p class="text-muted small">New Voter Registration • Changes in existing Voter ID</p>
                                 <button class="btn btn-success btn-sm mt-2">View Details</button>
                             </div>
                         </div>
                     </div>
                     
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Driving License', ['Aadhaar Card', 'PAN Card', 'School Leaving Cert.', 'Photo'], 'Our Driving License services include: Learning, Permanent, Renewal')">
+                            <div class="text-center">
+                                <i class="bi bi-car-front display-4 text-primary mb-3"></i>
+                                <h5 class="fw-semibold">Driving License</h5>
+                                <p class="text-muted small">Learning • Permanent • Renewal</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="service-card h-100" onclick="showServiceModal('Passport', ['Birth certificate', 'Address proof', 'Identity proof', 'Passport size photographs', 'Self-attested documents'])">
                             <div class="text-center">
@@ -266,7 +277,7 @@
             <!-- Certificates Section -->
             <div class="mb-5">
                 <h3 class="fw-bold mb-4 text-success border-bottom pb-2">
-                    <i class="bi bi-file-earmark-text me-2"></i>Certificates
+                    <i class="bi bi-file-earmark-text me-2"></i>Certificates & Gazette
                 </h3>
                 <div class="row g-4">
                     <div class="col-lg-3 col-md-4 col-sm-6">
@@ -312,6 +323,17 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Gazette', ['Aadhaar Card', 'Light Bill', 'School Leaving Certificate', 'Affidavit', 'Passport size photo'], 'Our Gazette services include: Name Change')">
+                            <div class="text-center">
+                                <i class="bi bi-newspaper display-4 text-info mb-3"></i>
+                                <h5 class="fw-semibold">Gazette</h5>
+                                <p class="text-muted small">Name Change</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -333,22 +355,22 @@
                     </div>
                     
                     <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="service-card h-100" onclick="showServiceModal('Udyam Registration', ['Aadhaar card', 'PAN card', 'Business details', 'Bank account details', 'Business activity description'])">
+                        <div class="service-card h-100" onclick="showServiceModal('Udyam Registration', ['Aadhaar Card', 'PAN Card', 'Light Bill', 'Bank Details'], 'Our Udyam services include: New Udyam Registration, Changes in Existing Udyam Aadhaar')">
                             <div class="text-center">
                                 <i class="bi bi-building display-4 text-danger mb-3"></i>
                                 <h5 class="fw-semibold">Udyam Registration</h5>
-                                <p class="text-muted small">MSME Registration</p>
+                                <p class="text-muted small">New Udyam Registration • Changes in Existing Udyam Aadhaar</p>
                                 <button class="btn btn-success btn-sm mt-2">View Details</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="service-card h-100" onclick="showServiceModal('GST Registration', ['PAN card', 'Aadhaar card', 'Business registration proof', 'Address proof', 'Bank account details'])">
+                        <div class="service-card h-100" onclick="showServiceModal('GST Registration', ['Aadhaar Card', 'PAN Card', 'Light Bill / Rent agreement', 'Partnership Deed', 'Shop Act', 'Cancelled cheque'], 'Our GST services include: New GST Registration, GST Filing')">
                             <div class="text-center">
                                 <i class="bi bi-receipt display-4 text-warning mb-3"></i>
                                 <h5 class="fw-semibold">GST Registration</h5>
-                                <p class="text-muted small">Goods & Services Tax</p>
+                                <p class="text-muted small">New GST Registration • GST Filing</p>
                                 <button class="btn btn-success btn-sm mt-2">View Details</button>
                             </div>
                         </div>
@@ -366,11 +388,11 @@
                     </div>
 
                     <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="service-card h-100" onclick="showServiceModal('Food License (FSSAI)', ['Business address proof', 'Identity proof', 'Food safety management plan', 'Water test report', 'Layout plan of premises'])">
+                        <div class="service-card h-100" onclick="showServiceModal('Food License (FSSAI)', ['Aadhaar Card', 'PAN Card', 'Light Bill / Rent agreement', 'Self Declaration', 'Affidavit'], 'Our Food License services include: New Food License')">
                             <div class="text-center">
                                 <i class="bi bi-cup-hot display-4 text-warning mb-3"></i>
                                 <h5 class="fw-semibold">Food License (FSSAI)</h5>
-                                <p class="text-muted small">Food Safety License</p>
+                                <p class="text-muted small">New Food License</p>
                                 <button class="btn btn-success btn-sm mt-2">View Details</button>
                             </div>
                         </div>
@@ -385,7 +407,7 @@
                 </h3>
                 <div class="row g-4">
                     <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="service-card h-100" onclick="showServiceModal('PF Services (EPF)', ['Employee details', 'Employer details', 'Salary certificate', 'Bank account details', 'Aadhaar card', 'PAN card', 'Bank passbook', 'UAN number'], 'Our comprehensive PF services include: PF Withdrawal, PF KYC, UAN Number registration, and general EPF assistance. All services require basic KYC documents.')">
+                        <div class="service-card h-100" onclick="showServiceModal('PF Services (EPF)', ['UAN Number', 'Aadhaar Card', 'Bank Passbook', 'PAN Card'], 'Our comprehensive PF services include: PF Withdrawal, PF KYC, UAN Number registration, and general EPF assistance. All services require basic KYC documents.')">
                             <div class="text-center">
                                 <i class="bi bi-piggy-bank display-4 text-success mb-3"></i>
                                 <h5 class="fw-semibold">PF Services (EPF)</h5>
@@ -414,6 +436,17 @@
                     <i class="bi bi-houses me-2"></i>Property & Land Services
                 </h3>
                 <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="service-card h-100" onclick="showServiceModal('Rent Agreement', ['Property Details – Index 2', 'Party Details – Owner and Tenant – Aadhaar Card, PAN Card', 'Rent and Deposit details – Rent amount, Deposit amount, Lock in Period, Notice period, Starting Date, furnishing details, additional terms and conditions'])">
+                            <div class="text-center">
+                                <i class="bi bi-file-text display-4 text-primary mb-3"></i>
+                                <h5 class="fw-semibold">Rent Agreement</h5>
+                                <p class="text-muted small">Legal Rental Agreement</p>
+                                <button class="btn btn-success btn-sm mt-2">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="service-card h-100" onclick="showServiceModal('Land Record Services', ['Property documents', 'Survey settlement records', 'Revenue records', 'Identity proof', 'Address proof'])">
                             <div class="text-center">
@@ -461,17 +494,6 @@
                                 <i class="bi bi-card-list display-4 text-secondary mb-3"></i>
                                 <h5 class="fw-semibold">Ration Card</h5>
                                 <p class="text-muted small">Public Distribution System</p>
-                                <button class="btn btn-success btn-sm mt-2">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="service-card h-100" onclick="showServiceModal('Driving License', ['Learning license', 'Age proof', 'Address proof', 'Medical certificate', 'Passport size photographs'])">
-                            <div class="text-center">
-                                <i class="bi bi-car-front display-4 text-primary mb-3"></i>
-                                <h5 class="fw-semibold">Driving License</h5>
-                                <p class="text-muted small">Motor Vehicle License</p>
                                 <button class="btn btn-success btn-sm mt-2">View Details</button>
                             </div>
                         </div>
@@ -573,7 +595,7 @@
                     </div>
                     <div class="mb-3">
                         <i class="bi bi-envelope-fill me-3"></i>
-                        <span>support@mahesevapoint.com</span>
+                        <span>vwadekar753@gmail.com</span>
                     </div>
                     <div class="mb-4">
                         <i class="bi bi-clock-fill me-3"></i>
