@@ -85,7 +85,7 @@ function setupRealTimeCalculation() {
 }
 
 // Service Modal Functions
-function showServiceModal(serviceName, requiredDocs) {
+function showServiceModal(serviceName, requiredDocs, description = null) {
     // Set modal title
     document.getElementById('serviceModalTitle').textContent = serviceName;
 
@@ -95,9 +95,18 @@ function showServiceModal(serviceName, requiredDocs) {
     
     requiredDocs.forEach(doc => {
         const li = document.createElement('li');
-        li.textContent = doc;
+        li.className = 'list-group-item';
+        li.innerHTML = `<i class="bi bi-check-circle text-success me-2"></i>${doc}`;
         docsList.appendChild(li);
     });
+
+    // Add description if provided
+    if (description) {
+        const descriptionDiv = document.createElement('div');
+        descriptionDiv.className = 'alert alert-primary mb-3';
+        descriptionDiv.innerHTML = `<i class="bi bi-info-circle me-2"></i><strong>Service Details:</strong> ${description}`;
+        docsList.parentNode.insertBefore(descriptionDiv, docsList);
+    }
 
     // Show modal
     const modal = new bootstrap.Modal(document.getElementById('serviceModal'));
