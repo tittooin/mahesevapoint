@@ -21,9 +21,12 @@ function calculateRent() {
     const monthlyRent = parseInt(document.getElementById('monthlyRent').value) || 0;
     const deposit = parseInt(document.getElementById('deposit').value) || 0;
 
-    // Validation
+    // Validation - silently return if values are incomplete
     if (!propertyArea || licensePeriod <= 0 || monthlyRent <= 0) {
-        alert('Please fill in all required fields with valid values.');
+        // Clear displays when invalid
+        document.getElementById('stampDutyDisplay').textContent = '₹0';
+        document.getElementById('totalCostDisplay').textContent = '₹0';
+        document.getElementById('finalTotalAmount').textContent = '0';
         return;
     }
 
