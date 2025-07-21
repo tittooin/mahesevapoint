@@ -262,10 +262,13 @@ section {
     font-weight: 500;
 }
 
-/* List Styles in Modal */
+/* List Styles in Modal - Updated for single bullet points */
 #requiredDocuments li {
     padding: 0.5rem 0;
     border-bottom: 1px solid #e9ecef;
+    list-style: none;
+    position: relative;
+    padding-left: 2rem;
 }
 
 #requiredDocuments li:last-child {
@@ -276,5 +279,7 @@ section {
     content: "✓";
     color: var(--green);
     font-weight: bold;
-    margin-right: 0.5rem;
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
 }
