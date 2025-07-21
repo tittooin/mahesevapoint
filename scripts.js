@@ -104,8 +104,7 @@ function showServiceModal(serviceName, requiredDocs, description = null) {
     
     requiredDocs.forEach(doc => {
         const li = document.createElement('li');
-        li.className = 'list-group-item';
-        li.innerHTML = `<i class="bi bi-check-circle text-success me-2"></i>${doc}`;
+        li.textContent = doc;
         docsList.appendChild(li);
     });
 
