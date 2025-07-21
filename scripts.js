@@ -25,7 +25,6 @@ function calculateRent() {
     if (!propertyArea || licensePeriod <= 0 || monthlyRent <= 0) {
         // Clear displays when invalid
         document.getElementById('stampDutyDisplay').textContent = '₹0';
-        document.getElementById('totalCostDisplay').textContent = '₹0';
         document.getElementById('finalTotalAmount').textContent = '0';
         return;
     }
@@ -51,7 +50,6 @@ function calculateRent() {
 
     // Update displays
     document.getElementById('stampDutyDisplay').textContent = `₹${stampDuty.toLocaleString()}`;
-    document.getElementById('totalCostDisplay').textContent = `₹${totalAmount.toLocaleString()}`;
     document.getElementById('finalTotalAmount').textContent = totalAmount.toLocaleString();
 
     // Show notification
