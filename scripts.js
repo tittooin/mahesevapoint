@@ -15,17 +15,46 @@ function scrollToSection(sectionId) {
 
 // Enhanced Rent Agreement Calculator with real-time updates
 function calculateRent() {
+    console.log('calculateRent called');
+    
     // Get form values
-    const propertyArea = document.getElementById('propertyArea').value;
-    const licensePeriod = parseInt(document.getElementById('licensePeriod').value) || 0;
-    const monthlyRent = parseInt(document.getElementById('monthlyRent').value) || 0;
-    const deposit = parseInt(document.getElementById('deposit').value) || 0;
+    const propertyArea = document.getElementById('propertyArea');
+    const licensePeriod = document.getElementById('licensePeriod');
+    const monthlyRent = document.getElementById('monthlyRent');
+    const deposit = document.getElementById('deposit');
+    
+    console.log('Form elements found:', {
+        propertyArea: !!propertyArea,
+        licensePeriod: !!licensePeriod, 
+        monthlyRent: !!monthlyRent,
+        deposit: !!deposit
+    });
+    
+    if (!propertyArea || !licensePeriod || !monthlyRent || !deposit) {
+        console.log('Some form elements not found');
+        return;
+    }
+    
+    const propertyAreaValue = propertyArea.value;
+    const licensePeriodValue = parseInt(licensePeriod.value) || 0;
+    const monthlyRentValue = parseInt(monthlyRent.value.replace(/[^\d]/g, '')) || 0;
+    const depositValue = parseInt(deposit.value.replace(/[^\d]/g, '')) || 0;
+    
+    console.log('Form values:', {
+        propertyArea: propertyAreaValue,
+        licensePeriod: licensePeriodValue,
+        monthlyRent: monthlyRentValue,
+        deposit: depositValue
+    });
 
     // Validation - silently return if values are incomplete
-    if (!propertyArea || licensePeriod <= 0 || monthlyRent <= 0) {
+    if (!propertyAreaValue || licensePeriodValue <= 0 || monthlyRentValue <= 0) {
+        console.log('Validation failed - incomplete values');
         // Clear displays when invalid
-        document.getElementById('stampDutyDisplay').textContent = '₹0';
-        document.getElementById('finalTotalAmount').textContent = '0';
+        const stampDutyEl = document.getElementById('stampDutyDisplay');
+        const totalAmountEl = document.getElementById('finalTotalAmount');
+        if (stampDutyEl) stampDutyEl.textContent = '₹0';
+        if (totalAmountEl) totalAmountEl.textContent = '0';
         return;
     }
 
@@ -35,36 +64,35 @@ function calculateRent() {
     const serviceFee = 599;
 
     // Calculate stamp duty (0.25% of total rent)
-    const totalRent = monthlyRent * licensePeriod;
+    const totalRent = monthlyRentValue * licensePeriodValue;
     const stampDuty = Math.round(totalRent * 0.0025);
 
     // Calculate add-ons
     let addonsTotal = 0;
     const addonCheckboxes = document.querySelectorAll('.addon-checkbox:checked');
     addonCheckboxes.forEach(checkbox => {
-        addonsTotal += parseInt(checkbox.getAttribute('data-price'));
+        addonsTotal += parseInt(checkbox.getAttribute('data-price')) || 0;
     });
 
     // Calculate total
     const totalAmount = govtRegFee + dhcFee + serviceFee + stampDuty + addonsTotal;
 
     // Update displays
-    document.getElementById('stampDutyDisplay').textContent = `₹${stampDuty.toLocaleString()}`;
-    document.getElementById('finalTotalAmount').textContent = totalAmount.toLocaleString();
+    const stampDutyEl = document.getElementById('stampDutyDisplay');
+    const totalAmountEl = document.getElementById('finalTotalAmount');
+    
+    if (stampDutyEl) stampDutyEl.textContent = `₹${stampDuty.toLocaleString()}`;
+    if (totalAmountEl) totalAmountEl.textContent = totalAmount.toLocaleString();
 
-    // Show notification
-    showNotification('Calculation updated successfully!', 'success');
-
-    // Log calculation for debugging
-    console.log('Rent calculation:', {
-        propertyArea,
-        licensePeriod,
-        monthlyRent,
-        deposit,
+    console.log('Calculation complete:', {
+        totalRent,
         stampDuty,
         addonsTotal,
         totalAmount
     });
+
+    // Show notification
+    showNotification('Calculation updated successfully!', 'success');
 }
 
 // Real-time calculation on input change
