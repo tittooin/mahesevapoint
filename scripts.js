@@ -95,18 +95,32 @@ function calculateRent() {
 
 // Real-time calculation on input change
 function setupRealTimeCalculation() {
-    const inputs = ['licensePeriod', 'monthlyRent', 'deposit'];
+    console.log('Setting up real-time calculation...');
+    const inputs = ['propertyArea', 'licensePeriod', 'monthlyRent', 'deposit'];
     const checkboxes = document.querySelectorAll('.addon-checkbox');
     
     inputs.forEach(inputId => {
         const input = document.getElementById(inputId);
         if (input) {
-            input.addEventListener('input', calculateRent);
+            console.log(`Setting up listener for ${inputId}`);
+            input.addEventListener('input', function() {
+                console.log(`Input changed: ${inputId} = ${this.value}`);
+                calculateRent();
+            });
+            input.addEventListener('change', function() {
+                console.log(`Change event: ${inputId} = ${this.value}`);
+                calculateRent();
+            });
+        } else {
+            console.log(`Input not found: ${inputId}`);
         }
     });
     
     checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', calculateRent);
+        checkbox.addEventListener('change', function() {
+            console.log(`Checkbox changed: ${this.id} = ${this.checked}`);
+            calculateRent();
+        });
     });
 }
 
@@ -152,8 +166,20 @@ function showServiceModal(serviceName, requiredDocs, description = null) {
 
 // Form Submission Handlers
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded - initializing application...');
+    
     // Setup real-time calculation
     setupRealTimeCalculation();
+    
+    // Test if form elements exist
+    const formElements = ['propertyArea', 'licensePeriod', 'monthlyRent', 'deposit'];
+    formElements.forEach(id => {
+        const element = document.getElementById(id);
+        console.log(`Element ${id} found:`, !!element);
+        if (element) {
+            console.log(`Element ${id} value:`, element.value);
+        }
+    });
     
     // Initial calculation
     calculateRent();
