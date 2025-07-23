@@ -17,7 +17,7 @@ function scrollToSection(sectionId) {
 function calculateRent() {
     console.log('calculateRent called');
     
-    // Get form values
+    // Get form values with better error handling
     const propertyArea = document.getElementById('propertyArea');
     const licensePeriod = document.getElementById('licensePeriod');
     const monthlyRent = document.getElementById('monthlyRent');
@@ -35,10 +35,11 @@ function calculateRent() {
         return;
     }
     
+    // Get values with proper parsing
     const propertyAreaValue = propertyArea.value;
     const licensePeriodValue = parseInt(licensePeriod.value) || 0;
-    const monthlyRentValue = parseInt(monthlyRent.value.replace(/[^\d]/g, '')) || 0;
-    const depositValue = parseInt(deposit.value.replace(/[^\d]/g, '')) || 0;
+    const monthlyRentValue = parseInt(monthlyRent.value) || 0;
+    const depositValue = parseInt(deposit.value) || 0;
     
     console.log('Form values:', {
         propertyArea: propertyAreaValue,
@@ -47,14 +48,14 @@ function calculateRent() {
         deposit: depositValue
     });
 
-    // Validation - silently return if values are incomplete
+    // Validation - require minimum values
     if (!propertyAreaValue || licensePeriodValue <= 0 || monthlyRentValue <= 0) {
         console.log('Validation failed - incomplete values');
         // Clear displays when invalid
         const stampDutyEl = document.getElementById('stampDutyDisplay');
         const totalAmountEl = document.getElementById('finalTotalAmount');
         if (stampDutyEl) stampDutyEl.textContent = '₹0';
-        if (totalAmountEl) totalAmountEl.textContent = '0';
+        if (totalAmountEl) totalAmountEl.textContent = '1999';
         return;
     }
 
@@ -77,7 +78,7 @@ function calculateRent() {
     // Calculate total
     const totalAmount = govtRegFee + dhcFee + serviceFee + stampDuty + addonsTotal;
 
-    // Update displays
+    // Update displays with proper formatting
     const stampDutyEl = document.getElementById('stampDutyDisplay');
     const totalAmountEl = document.getElementById('finalTotalAmount');
     
