@@ -90,9 +90,6 @@ function calculateRent() {
         addonsTotal,
         totalAmount
     });
-
-    // Show notification
-    showNotification('Calculation updated successfully!', 'success');
 }
 
 // Real-time calculation on input change
