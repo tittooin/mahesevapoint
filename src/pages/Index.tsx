@@ -21,15 +21,14 @@ const Index = () => {
   const [stampDuty, setStampDuty] = useState(0);
 
   const calculateRent = () => {
-    console.log('Calculating rent...');
+    console.log('Calculating rent...', { monthlyRent, licensePeriod, propertyArea });
     
     const monthlyRentNum = parseFloat(monthlyRent) || 0;
     
-    // Validation
-    if (!propertyArea || licensePeriod <= 0 || monthlyRentNum <= 0) {
-      console.log('Validation failed');
-      setStampDuty(0);
-      setTotalAmount(1999);
+    // Only calculate if we have valid inputs
+    if (!monthlyRent || monthlyRentNum <= 0 || licensePeriod <= 0) {
+      console.log('Validation failed - insufficient data');
+      // Don't reset values, just keep current state
       return;
     }
 
