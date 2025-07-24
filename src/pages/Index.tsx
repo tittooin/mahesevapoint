@@ -9,8 +9,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 const Index = () => {
   const [propertyArea, setPropertyArea] = useState('Urban');
   const [licensePeriod, setLicensePeriod] = useState(12);
-  const [monthlyRent, setMonthlyRent] = useState(0);
-  const [deposit, setDeposit] = useState(0);
+  const [monthlyRent, setMonthlyRent] = useState('');
+  const [deposit, setDeposit] = useState('');
   const [addons, setAddons] = useState({
     homeVisit: false,
     extraVisitSame: false,
@@ -23,8 +23,10 @@ const Index = () => {
   const calculateRent = () => {
     console.log('Calculating rent...');
     
+    const monthlyRentNum = parseFloat(monthlyRent) || 0;
+    
     // Validation
-    if (!propertyArea || licensePeriod <= 0 || monthlyRent <= 0) {
+    if (!propertyArea || licensePeriod <= 0 || monthlyRentNum <= 0) {
       console.log('Validation failed');
       setStampDuty(0);
       setTotalAmount(1999);
@@ -37,7 +39,7 @@ const Index = () => {
     const serviceFee = 599;
 
     // Calculate stamp duty (0.25% of total rent)
-    const totalRent = monthlyRent * licensePeriod;
+    const totalRent = monthlyRentNum * licensePeriod;
     const calculatedStampDuty = Math.round(totalRent * 0.0025);
 
     // Calculate add-ons
@@ -154,8 +156,8 @@ const Index = () => {
                     <Label className="text-gray-700 font-semibold">Monthly Rent (₹)</Label>
                     <Input
                       type="number"
-                      value={monthlyRent || ''}
-                      onChange={(e) => setMonthlyRent(parseInt(e.target.value) || 0)}
+                      value={monthlyRent}
+                      onChange={(e) => setMonthlyRent(e.target.value)}
                       placeholder="10000"
                       min="1"
                     />
@@ -165,8 +167,8 @@ const Index = () => {
                     <Label className="text-gray-700 font-semibold">Deposit (₹)</Label>
                     <Input
                       type="number"
-                      value={deposit || ''}
-                      onChange={(e) => setDeposit(parseInt(e.target.value) || 0)}
+                      value={deposit}
+                      onChange={(e) => setDeposit(e.target.value)}
                       placeholder="50000"
                       min="0"
                     />
