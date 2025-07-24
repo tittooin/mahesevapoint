@@ -25,10 +25,9 @@ const Index = () => {
     
     const monthlyRentNum = parseFloat(monthlyRent) || 0;
     
-    // Only calculate if we have valid inputs
+    // Only calculate if we have valid inputs, otherwise keep showing default values
     if (!monthlyRent || monthlyRentNum <= 0 || licensePeriod <= 0) {
-      console.log('Validation failed - insufficient data');
-      // Don't reset values, just keep current state
+      console.log('Validation failed - insufficient data, keeping default display');
       return;
     }
 
