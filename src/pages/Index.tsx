@@ -75,10 +75,14 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-white">
       {/* Header */}
       <nav className="bg-orange-500 text-white py-4 shadow-lg">
-        <div className="container mx-auto px-4">
-          <h1 className="text-2xl font-bold" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
-            महाराष्ट्र ई-सेवा केंद्र
-          </h1>
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">MahesevaPoint</h1>
+          <div className="hidden md:flex space-x-8">
+            <a href="#" className="hover:text-orange-200 transition-colors">Home</a>
+            <a href="#" className="hover:text-orange-200 transition-colors">Rent Agreement</a>
+            <a href="#" className="hover:text-orange-200 transition-colors">Services</a>
+            <a href="#" className="hover:text-orange-200 transition-colors">Contact</a>
+          </div>
         </div>
       </nav>
 
@@ -99,6 +103,13 @@ const Index = () => {
               </div>
             </div>
             <div className="text-center">
+              <div className="mb-6">
+                <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
+                  <span className="text-orange-500">महाराष्ट्र</span>{" "}
+                  <span className="text-green-600">ई-सेवा</span>{" "}
+                  <span className="text-orange-500">केंद्र</span>
+                </h2>
+              </div>
               <div className="bg-gray-100 p-6 rounded-lg shadow-sm">
                 <img 
                   src="/lovable-uploads/a6ef4f4f-a147-4a82-91b3-ce265084b283.png" 
@@ -268,29 +279,34 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-6" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
-                Contact महाराष्ट्र ई-सेवा केंद्र
-              </h3>
+              <h3 className="text-3xl font-bold mb-6">Contact MahesevaPoint</h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <span>📍</span>
-                  <span>Pune, Maharashtra</span>
+                  <span>123 Digital Hub, Tech City, Pune - 411001</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span>📞</span>
-                  <span>Contact Available</span>
+                  <span>+91 98765 43210</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span>✉️</span>
-                  <span>Email Available</span>
+                  <span>support@mahesevapoint.com</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span>🕒</span>
-                  <span>Service Hours Available</span>
+                  <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
                 </div>
               </div>
               
               <div className="bg-white p-4 rounded-lg shadow mt-6">
+                <div className="text-center mb-4">
+                  <h4 className="text-2xl font-bold text-gray-800" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
+                    <span className="text-orange-500">महाराष्ट्र</span>{" "}
+                    <span className="text-green-600">ई-सेवा</span>{" "}
+                    <span className="text-orange-500">केंद्र</span>
+                  </h4>
+                </div>
                 <img 
                   src="lovable-uploads/81ac8329-4fe2-494f-9bd0-0c1fb4c01b2f.png" 
                   alt="Maharashtra E-Seva Kendra - Digital India, Aadhaar, MSME" 
