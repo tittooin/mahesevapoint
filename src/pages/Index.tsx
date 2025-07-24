@@ -292,7 +292,7 @@ const Index = () => {
               
               <div className="bg-white p-4 rounded-lg shadow mt-6">
                 <img 
-                  src="/lovable-uploads/81ac8329-4fe2-494f-9bd0-0c1fb4c01b2f.png" 
+                  src="lovable-uploads/81ac8329-4fe2-494f-9bd0-0c1fb4c01b2f.png" 
                   alt="Maharashtra E-Seva Kendra - Digital India, Aadhaar, MSME" 
                   className="w-full h-auto"
                 />
