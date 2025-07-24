@@ -257,8 +257,8 @@ const Index = () => {
                 </div>
 
                 {/* Total Display */}
-                <div className="bg-blue-600 text-white text-center py-4 rounded-lg">
-                  <div className="text-xl font-semibold">
+                <div className="bg-blue-500 text-white text-center py-6 rounded-lg shadow-lg">
+                  <div className="text-2xl font-semibold">
                     Total Cost including Govt. Charges: ₹{totalAmount.toLocaleString()}
                   </div>
                 </div>
