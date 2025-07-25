@@ -5,6 +5,8 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import headerLogos from '@/assets/header-logos.png';
+import footerLogos from '@/assets/footer-logos.png';
 
 const Index = () => {
   const [propertyArea, setPropertyArea] = useState('Urban');
@@ -25,20 +27,17 @@ const Index = () => {
     
     const monthlyRentNum = parseFloat(monthlyRent) || 0;
     
-    // Only calculate if we have valid inputs, otherwise keep showing default values
-    if (!monthlyRent || monthlyRentNum <= 0 || licensePeriod <= 0) {
-      console.log('Validation failed - insufficient data, keeping default display');
-      return;
-    }
-
     // Fixed charges
     const govtRegFee = 1000;
     const dhcFee = 300;
     const serviceFee = 599;
 
-    // Calculate stamp duty (0.25% of total rent)
-    const totalRent = monthlyRentNum * licensePeriod;
-    const calculatedStampDuty = Math.round(totalRent * 0.0025);
+    // Calculate stamp duty (0.25% of total rent) - only if we have valid rent data
+    let calculatedStampDuty = 0;
+    if (monthlyRent && monthlyRentNum > 0 && licensePeriod > 0) {
+      const totalRent = monthlyRentNum * licensePeriod;
+      calculatedStampDuty = Math.round(totalRent * 0.0025);
+    }
 
     // Calculate add-ons
     let addonsTotal = 0;
@@ -54,7 +53,7 @@ const Index = () => {
     setTotalAmount(total);
 
     console.log('Calculation complete:', {
-      totalRent,
+      totalRent: monthlyRentNum * licensePeriod,
       stampDuty: calculatedStampDuty,
       addonsTotal,
       total
@@ -110,7 +109,7 @@ const Index = () => {
               </div>
               <div className="bg-gray-100 p-6 rounded-lg shadow-sm">
                 <img 
-                  src="/lovable-uploads/a6ef4f4f-a147-4a82-91b3-ce265084b283.png" 
+                  src={headerLogos} 
                   alt="Maharashtra E-Seva Kendra - Government Service Logos" 
                   className="w-full h-auto"
                 />
@@ -306,7 +305,7 @@ const Index = () => {
                   </h4>
                 </div>
                 <img 
-                  src="lovable-uploads/81ac8329-4fe2-494f-9bd0-0c1fb4c01b2f.png" 
+                  src={footerLogos} 
                   alt="Maharashtra E-Seva Kendra - Digital India, Aadhaar, MSME" 
                   className="w-full h-auto"
                 />
