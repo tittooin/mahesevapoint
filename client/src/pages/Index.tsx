@@ -7,7 +7,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import headerLogos from '@/assets/header-logos.png';
 import footerLogos from '@/assets/footer-logos.png';
-import heroSection from '@/assets/hero-section.png';
+import heroSectionNew from '@/assets/hero-section-new.png';
 import contactSection from '@/assets/contact-section.png';
 import contactFooterFinal from '@/assets/contact-footer-final.png';
 
@@ -107,8 +107,8 @@ const Index = () => {
             <div className="text-center">
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <img 
-                  src={heroSection} 
-                  alt="Maharashtra E-Seva Kendra - Digital Services Platform with Government Logos" 
+                  src={heroSectionNew} 
+                  alt="Maharashtra E-Seva Kendra - Complete Digital Services Platform with All Government Service Logos" 
                   className="w-full h-auto"
                 />
               </div>
