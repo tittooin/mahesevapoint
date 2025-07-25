@@ -333,15 +333,13 @@ const Index = () => {
     icon, 
     title, 
     description, 
-    bgColor, 
-    buttonVariant = "outline" 
+    bgColor
   }: {
     serviceKey: keyof typeof serviceDocuments;
     icon: string;
     title: string;
     description: string;
     bgColor: string;
-    buttonVariant?: "outline" | "default" | "link" | "destructive" | "secondary" | "ghost";
   }) => {
     const serviceData = serviceDocuments[serviceKey];
     return (
@@ -355,8 +353,8 @@ const Index = () => {
                 </div>
                 <h4 className="text-lg font-bold mb-2">{title}</h4>
                 <p className="text-sm text-gray-600 mb-3">{description}</p>
-                <Button variant={buttonVariant} size="sm" className={buttonVariant === "default" ? "bg-green-600 hover:bg-green-700" : ""}>
-                  {buttonVariant === "default" ? "Get Started" : "View Details"}
+                <Button className="bg-green-600 hover:bg-green-700" size="sm">
+                  Get Started
                 </Button>
               </div>
             </CardContent>
@@ -611,16 +609,13 @@ const Index = () => {
             <div>
               <h3 className="text-2xl font-bold mb-6 text-orange-500">Property & Land Services</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="border-2 border-green-200 rounded-lg">
-                  <ServiceDialog 
-                    serviceKey="rent"
-                    icon="📋"
-                    title="Rent Agreement"
-                    description="Legal Rental Agreement"
-                    bgColor="bg-green-100"
-                    buttonVariant="default"
-                  />
-                </div>
+                <ServiceDialog 
+                  serviceKey="rent"
+                  icon="📋"
+                  title="Rent Agreement"
+                  description="Legal Rental Agreement"
+                  bgColor="bg-green-100"
+                />
                 <ServiceDialog 
                   serviceKey="land"
                   icon="📄"
