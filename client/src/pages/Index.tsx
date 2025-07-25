@@ -5,6 +5,9 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Textarea } from '@/components/ui/textarea';
+import { CheckCircle, Info } from 'lucide-react';
 import headerLogos from '@/assets/header-logos.png';
 import footerLogos from '@/assets/footer-logos.png';
 import heroSectionNew from '@/assets/hero-section-new.png';
@@ -24,6 +27,281 @@ const Index = () => {
   });
   const [totalAmount, setTotalAmount] = useState(1999);
   const [stampDuty, setStampDuty] = useState(0);
+
+  // Service documents data
+  const serviceDocuments = {
+    'aadhaar': {
+      title: 'Aadhaar Card',
+      documents: [
+        'Original Aadhaar card or enrolment slip',
+        'Proof of identity (PAN card, passport, voter ID)',
+        'Proof of address (utility bill, bank statement)',
+        'Photograph (passport size)',
+        'Mobile number for OTP verification'
+      ]
+    },
+    'pan': {
+      title: 'PAN Card',
+      documents: [
+        'Form 49A (for Indian citizens) or Form 49AA (for foreign citizens)',
+        'Proof of identity (Aadhaar, passport, voter ID)',
+        'Proof of address (utility bill, bank statement)',
+        'Proof of date of birth (birth certificate, passport)',
+        'Passport size photographs'
+      ]
+    },
+    'voter': {
+      title: 'Voter ID',
+      documents: [
+        'Form 6 (for new registration)',
+        'Age proof (birth certificate, passport, Aadhaar)',
+        'Address proof (utility bill, bank statement)',
+        'Identity proof (Aadhaar, PAN card, passport)',
+        'Recent passport size photograph'
+      ]
+    },
+    'driving': {
+      title: 'Driving License',
+      documents: [
+        'Form 1 (Application for driving license)',
+        'Form 1A (Medical certificate)',
+        'Age proof (birth certificate, school certificate)',
+        'Address proof (utility bill, Aadhaar)',
+        'Passport size photographs',
+        'Learning license (for permanent license)'
+      ]
+    },
+    'passport': {
+      title: 'Passport',
+      documents: [
+        'Online application form',
+        'Birth certificate',
+        'Address proof (Aadhaar, utility bill)',
+        'Identity proof (Aadhaar, PAN card)',
+        'Passport size photographs',
+        'Police verification documents'
+      ]
+    },
+    'income': {
+      title: 'Income Certificate',
+      documents: [
+        'Application form with required details',
+        'Salary slips or income proof',
+        'Bank statements (last 6 months)',
+        'Aadhaar card copy',
+        'Address proof documents',
+        'Affidavit of income declaration'
+      ]
+    },
+    'caste': {
+      title: 'Caste Certificate',
+      documents: [
+        'Application form for caste certificate',
+        'Birth certificate of applicant',
+        'School leaving certificate',
+        'Parents caste certificate (if available)',
+        'Aadhaar card copy',
+        'Address proof documents'
+      ]
+    },
+    'domicile': {
+      title: 'Domicile Certificate',
+      documents: [
+        'Application form for domicile certificate',
+        'Birth certificate showing place of birth',
+        'School leaving certificate',
+        'Address proof (minimum 15 years residence)',
+        'Aadhaar card copy',
+        'Parents domicile certificate (if available)'
+      ]
+    },
+    'noncreamy': {
+      title: 'Non-Creamy Layer Certificate',
+      documents: [
+        'Application form for NCL certificate',
+        'Caste certificate of parents',
+        'Income certificate of parents',
+        'Service certificate of parents (if government employee)',
+        'Aadhaar card copy',
+        'Birth certificate'
+      ]
+    },
+    'gazette': {
+      title: 'Gazette (Name Change)',
+      documents: [
+        'Affidavit for name change',
+        'Publication in local newspaper',
+        'Birth certificate (original name)',
+        'Aadhaar card copy',
+        'Address proof documents',
+        'Two witnesses with identity proof'
+      ]
+    },
+    'shopact': {
+      title: 'Shop Act License',
+      documents: [
+        'Application form for shop act license',
+        'Property ownership or rental agreement',
+        'Aadhaar card of proprietor',
+        'PAN card of business',
+        'Passport size photographs',
+        'No objection certificate from owner (if rented)'
+      ]
+    },
+    'udyam': {
+      title: 'Udyam Registration',
+      documents: [
+        'Aadhaar number of entrepreneur',
+        'PAN of enterprise',
+        'Bank account details',
+        'Details of existing enterprise (if any)',
+        'Investment details in plant and machinery',
+        'Turnover details of previous years'
+      ]
+    },
+    'gst': {
+      title: 'GST Registration',
+      documents: [
+        'PAN card of business',
+        'Aadhaar card of proprietor/partners',
+        'Business registration certificate',
+        'Bank account proof',
+        'Address proof of business place',
+        'Photographs of business premises'
+      ]
+    },
+    'trade': {
+      title: 'Trade License',
+      documents: [
+        'Application form for trade license',
+        'Property documents or rental agreement',
+        'Layout plan of business premises',
+        'NOC from fire department',
+        'Pollution clearance certificate',
+        'Partnership deed (if partnership firm)'
+      ]
+    },
+    'food': {
+      title: 'Food License (FSSAI)',
+      documents: [
+        'Form A for food license application',
+        'Identity and address proof of applicant',
+        'Layout plan of processing unit',
+        'List of food products to be manufactured',
+        'NOC from municipality/panchayat',
+        'Water analysis report'
+      ]
+    },
+    'pf': {
+      title: 'PF Services (EPF)',
+      documents: [
+        'Aadhaar card linked with UAN',
+        'Bank account with IFSC code',
+        'Employment proof or service record',
+        'Form 19 (for PF withdrawal)',
+        'Cancelled cheque or passbook copy',
+        'Exit interview letter (if applicable)'
+      ]
+    },
+    'esi': {
+      title: 'ESI Registration',
+      documents: [
+        'Application form for ESI registration',
+        'Copy of trade license or registration',
+        'List of employees with details',
+        'Salary register of employees',
+        'Bank account details',
+        'Rent agreement of business premises'
+      ]
+    },
+    'rent': {
+      title: 'Rent Agreement',
+      documents: [
+        'Identity proof of tenant and landlord',
+        'Address proof of both parties',
+        'Property ownership documents',
+        'Passport size photographs',
+        'Utility bills of the property',
+        'Previous rent agreement (if any)'
+      ]
+    },
+    'land': {
+      title: 'Land Record Services',
+      documents: [
+        'Survey number and property details',
+        'Original property documents',
+        'Identity proof of property owner',
+        'Mutation papers (if any)',
+        'Court orders (if any)',
+        'Revenue records and survey settlement'
+      ]
+    },
+    'property': {
+      title: 'Property Registration',
+      documents: [
+        'Sale deed or agreement to sell',
+        'Title documents of property',
+        'Identity and address proof of parties',
+        'Encumbrance certificate',
+        'Property tax receipts',
+        'Stamp duty and registration fee payment'
+      ]
+    },
+    'mutation': {
+      title: 'Mutation of Property',
+      documents: [
+        'Application for mutation',
+        'Death certificate (in case of inheritance)',
+        'Legal heir certificate',
+        'Property documents',
+        'Revenue records',
+        'Court decree (if applicable)'
+      ]
+    },
+    'ration': {
+      title: 'Ration Card',
+      documents: [
+        'Application form for ration card',
+        'Aadhaar card of all family members',
+        'Income certificate',
+        'Address proof documents',
+        'Family photograph',
+        'Bank account details'
+      ]
+    },
+    'birth': {
+      title: 'Birth Certificate',
+      documents: [
+        'Hospital birth certificate',
+        'Parents identity proof',
+        'Address proof',
+        'Marriage certificate of parents',
+        'Vaccination records'
+      ]
+    },
+    'marriage': {
+      title: 'Marriage Registration',
+      documents: [
+        'Application form for marriage registration',
+        'Age proof of bride and groom',
+        'Address proof of both parties',
+        'Passport size photographs',
+        'Invitation card or marriage proof',
+        'Two witnesses with identity proof'
+      ]
+    },
+    'disability': {
+      title: 'Disability Certificate',
+      documents: [
+        'Application form for disability certificate',
+        'Medical reports from authorized doctor',
+        'Identity proof (Aadhaar, PAN)',
+        'Address proof documents',
+        'Passport size photographs',
+        'Previous disability certificate (if any)'
+      ]
+    }
+  };
 
   const calculateRent = () => {
     console.log('Calculating rent...', { monthlyRent, licensePeriod, propertyArea });
@@ -69,6 +347,84 @@ const Index = () => {
 
   const handleAddonChange = (addonKey: string, checked: boolean) => {
     setAddons(prev => ({ ...prev, [addonKey]: checked }));
+  };
+
+  // Service Dialog Component
+  const ServiceDialog = ({ 
+    serviceKey, 
+    icon, 
+    title, 
+    description, 
+    bgColor, 
+    buttonVariant = "outline" 
+  }: {
+    serviceKey: keyof typeof serviceDocuments;
+    icon: string;
+    title: string;
+    description: string;
+    bgColor: string;
+    buttonVariant?: "outline" | "default" | "link" | "destructive" | "secondary" | "ghost";
+  }) => {
+    const serviceData = serviceDocuments[serviceKey];
+    return (
+      <Dialog>
+        <DialogTrigger asChild>
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <CardContent className="p-6">
+              <div className="text-center">
+                <div className={`${bgColor} p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center`}>
+                  <span className="text-xl">{icon}</span>
+                </div>
+                <h4 className="text-lg font-bold mb-2">{title}</h4>
+                <p className="text-sm text-gray-600 mb-3">{description}</p>
+                <Button variant={buttonVariant} size="sm" className={buttonVariant === "default" ? "bg-green-600 hover:bg-green-700" : ""}>
+                  {buttonVariant === "default" ? "Get Started" : "View Details"}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </DialogTrigger>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold">{serviceData.title}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold text-blue-600 mb-4">Required Documents:</h3>
+              <div className="space-y-2">
+                {serviceData.documents.map((doc: string, index: number) => (
+                  <div key={index} className="flex items-start space-x-2">
+                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm text-gray-700">{doc}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <div className="flex items-start space-x-2">
+                <Info className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                <p className="text-sm text-blue-700">
+                  <strong>Note:</strong> All documents should be original or certified copies. Processing time may vary based on government procedures.
+                </p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Get in Touch</h3>
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <Input placeholder="Your Name" />
+                  <Input placeholder="Mobile Number" />
+                </div>
+                <Textarea placeholder="Additional Requirements or Questions" className="min-h-[100px]" />
+                <Button className="w-full bg-green-600 hover:bg-green-700">
+                  Request Service
+                </Button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
   };
 
   return (
@@ -130,70 +486,41 @@ const Index = () => {
             <div>
               <h3 className="text-2xl font-bold mb-6 text-orange-500">Identity Documents</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🆔</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Aadhaar Card</h4>
-                      <p className="text-sm text-gray-600 mb-3">Demographic Changes • Aadhaar – PAN Link • Aadhaar – Bank Link</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-green-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">💳</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">PAN Card</h4>
-                      <p className="text-sm text-gray-600 mb-3">New PAN Card • Changes in Existing PAN Card</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-purple-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🗳️</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Voter ID</h4>
-                      <p className="text-sm text-gray-600 mb-3">New Voter Registration • Changes in existing Voter ID</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-yellow-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🚗</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Driving License</h4>
-                      <p className="text-sm text-gray-600 mb-3">Learning • Permanent • Renewal</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-red-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">📔</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Passport</h4>
-                      <p className="text-sm text-gray-600 mb-3">International Travel Document</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <ServiceDialog 
+                  serviceKey="aadhaar"
+                  icon="🆔"
+                  title="Aadhaar Card"
+                  description="Demographic Changes • Aadhaar – PAN Link • Aadhaar – Bank Link"
+                  bgColor="bg-blue-100"
+                />
+                <ServiceDialog 
+                  serviceKey="pan"
+                  icon="💳"
+                  title="PAN Card"
+                  description="New PAN Card • Changes in Existing PAN Card"
+                  bgColor="bg-green-100"
+                />
+                <ServiceDialog 
+                  serviceKey="voter"
+                  icon="🗳️"
+                  title="Voter ID"
+                  description="New Voter Registration • Changes in existing Voter ID"
+                  bgColor="bg-purple-100"
+                />
+                <ServiceDialog 
+                  serviceKey="driving"
+                  icon="🚗"
+                  title="Driving License"
+                  description="Learning • Permanent • Renewal"
+                  bgColor="bg-yellow-100"
+                />
+                <ServiceDialog 
+                  serviceKey="passport"
+                  icon="📔"
+                  title="Passport"
+                  description="International Travel Document"
+                  bgColor="bg-red-100"
+                />
               </div>
             </div>
 
@@ -201,70 +528,41 @@ const Index = () => {
             <div>
               <h3 className="text-2xl font-bold mb-6 text-orange-500">Certificates & Gazette</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-indigo-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">💰</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Income Certificate</h4>
-                      <p className="text-sm text-gray-600 mb-3">Annual Income Verification</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-orange-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">👥</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Caste Certificate</h4>
-                      <p className="text-sm text-gray-600 mb-3">Social Category Verification</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-teal-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🏠</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Domicile Certificate</h4>
-                      <p className="text-sm text-gray-600 mb-3">Residence Verification</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-pink-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">📜</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Non-Creamy Layer</h4>
-                      <p className="text-sm text-gray-600 mb-3">OBC Category Certificate</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-gray-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">📰</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Gazette</h4>
-                      <p className="text-sm text-gray-600 mb-3">Name Change</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <ServiceDialog 
+                  serviceKey="income"
+                  icon="💰"
+                  title="Income Certificate"
+                  description="Annual Income Verification"
+                  bgColor="bg-indigo-100"
+                />
+                <ServiceDialog 
+                  serviceKey="caste"
+                  icon="👥"
+                  title="Caste Certificate"
+                  description="Social Category Verification"
+                  bgColor="bg-orange-100"
+                />
+                <ServiceDialog 
+                  serviceKey="domicile"
+                  icon="🏠"
+                  title="Domicile Certificate"
+                  description="Residence Verification"
+                  bgColor="bg-teal-100"
+                />
+                <ServiceDialog 
+                  serviceKey="noncreamy"
+                  icon="📜"
+                  title="Non-Creamy Layer"
+                  description="OBC Category Certificate"
+                  bgColor="bg-pink-100"
+                />
+                <ServiceDialog 
+                  serviceKey="gazette"
+                  icon="📰"
+                  title="Gazette"
+                  description="Name Change"
+                  bgColor="bg-gray-100"
+                />
               </div>
             </div>
 
@@ -272,70 +570,41 @@ const Index = () => {
             <div>
               <h3 className="text-2xl font-bold mb-6 text-orange-500">Business & Professional Services</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🏪</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Shop Act License</h4>
-                      <p className="text-sm text-gray-600 mb-3">Shop & Establishment License</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-green-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🏭</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Udyam Registration</h4>
-                      <p className="text-sm text-gray-600 mb-3">New Udyam Registration • Changes in Existing Udyam Aadhaar</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-purple-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">📊</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">GST Registration</h4>
-                      <p className="text-sm text-gray-600 mb-3">New GST Registration • GST Filing</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-yellow-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🏬</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Trade License</h4>
-                      <p className="text-sm text-gray-600 mb-3">Municipal Trade License</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-red-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🍽️</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Food License (FSSAI)</h4>
-                      <p className="text-sm text-gray-600 mb-3">New Food License</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <ServiceDialog 
+                  serviceKey="shopact"
+                  icon="🏪"
+                  title="Shop Act License"
+                  description="Shop & Establishment License"
+                  bgColor="bg-blue-100"
+                />
+                <ServiceDialog 
+                  serviceKey="udyam"
+                  icon="🏭"
+                  title="Udyam Registration"
+                  description="New Udyam Registration • Changes in Existing Udyam Aadhaar"
+                  bgColor="bg-green-100"
+                />
+                <ServiceDialog 
+                  serviceKey="gst"
+                  icon="📊"
+                  title="GST Registration"
+                  description="New GST Registration • GST Filing"
+                  bgColor="bg-purple-100"
+                />
+                <ServiceDialog 
+                  serviceKey="trade"
+                  icon="🏬"
+                  title="Trade License"
+                  description="Municipal Trade License"
+                  bgColor="bg-yellow-100"
+                />
+                <ServiceDialog 
+                  serviceKey="food"
+                  icon="🍽️"
+                  title="Food License (FSSAI)"
+                  description="New Food License"
+                  bgColor="bg-red-100"
+                />
               </div>
             </div>
 
@@ -343,31 +612,20 @@ const Index = () => {
             <div>
               <h3 className="text-2xl font-bold mb-6 text-orange-500">Employment & Financial Services</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-indigo-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">💼</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">PF Services (EPF)</h4>
-                      <p className="text-sm text-gray-600 mb-3">PF Withdrawal • PF KYC • UAN Number</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-teal-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🏥</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">ESI Registration</h4>
-                      <p className="text-sm text-gray-600 mb-3">Employee State Insurance</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <ServiceDialog 
+                  serviceKey="pf"
+                  icon="💼"
+                  title="PF Services (EPF)"
+                  description="PF Withdrawal • PF KYC • UAN Number"
+                  bgColor="bg-indigo-100"
+                />
+                <ServiceDialog 
+                  serviceKey="esi"
+                  icon="🏥"
+                  title="ESI Registration"
+                  description="Employee State Insurance"
+                  bgColor="bg-teal-100"
+                />
               </div>
             </div>
 
@@ -375,57 +633,37 @@ const Index = () => {
             <div>
               <h3 className="text-2xl font-bold mb-6 text-orange-500">Property & Land Services</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Card className="hover:shadow-lg transition-shadow border-2 border-green-200">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-green-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">📋</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Rent Agreement</h4>
-                      <p className="text-sm text-gray-600 mb-3">Legal Rental Agreement</p>
-                      <Button className="bg-green-600 hover:bg-green-700" size="sm">Get Started</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">📄</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Land Record Services</h4>
-                      <p className="text-sm text-gray-600 mb-3">Property Record Verification</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-purple-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🏡</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Property Registration</h4>
-                      <p className="text-sm text-gray-600 mb-3">Property Transfer Registration</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-orange-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🔄</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Mutation of Property</h4>
-                      <p className="text-sm text-gray-600 mb-3">Property Ownership Transfer</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div className="border-2 border-green-200 rounded-lg">
+                  <ServiceDialog 
+                    serviceKey="rent"
+                    icon="📋"
+                    title="Rent Agreement"
+                    description="Legal Rental Agreement"
+                    bgColor="bg-green-100"
+                    buttonVariant="default"
+                  />
+                </div>
+                <ServiceDialog 
+                  serviceKey="land"
+                  icon="📄"
+                  title="Land Record Services"
+                  description="Property Record Verification"
+                  bgColor="bg-blue-100"
+                />
+                <ServiceDialog 
+                  serviceKey="property"
+                  icon="🏡"
+                  title="Property Registration"
+                  description="Property Transfer Registration"
+                  bgColor="bg-purple-100"
+                />
+                <ServiceDialog 
+                  serviceKey="mutation"
+                  icon="🔄"
+                  title="Mutation of Property"
+                  description="Property Ownership Transfer"
+                  bgColor="bg-orange-100"
+                />
               </div>
             </div>
 
@@ -433,57 +671,34 @@ const Index = () => {
             <div>
               <h3 className="text-2xl font-bold mb-6 text-orange-500">Other Essential Services</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-yellow-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">🍚</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Ration Card</h4>
-                      <p className="text-sm text-gray-600 mb-3">Public Distribution System</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-pink-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">👶</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Birth Certificate</h4>
-                      <p className="text-sm text-gray-600 mb-3">Birth Registration Certificate</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-red-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">💒</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Marriage Registration</h4>
-                      <p className="text-sm text-gray-600 mb-3">Marriage Certificate</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="text-center">
-                      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl">♿</span>
-                      </div>
-                      <h4 className="text-lg font-bold mb-2">Disability Certificate</h4>
-                      <p className="text-sm text-gray-600 mb-3">Disability Assessment Certificate</p>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <ServiceDialog 
+                  serviceKey="ration"
+                  icon="🍚"
+                  title="Ration Card"
+                  description="Public Distribution System"
+                  bgColor="bg-yellow-100"
+                />
+                <ServiceDialog 
+                  serviceKey="birth"
+                  icon="👶"
+                  title="Birth Certificate"
+                  description="Birth Registration Certificate"
+                  bgColor="bg-pink-100"
+                />
+                <ServiceDialog 
+                  serviceKey="marriage"
+                  icon="💒"
+                  title="Marriage Registration"
+                  description="Marriage Certificate"
+                  bgColor="bg-red-100"
+                />
+                <ServiceDialog 
+                  serviceKey="disability"
+                  icon="♿"
+                  title="Disability Certificate"
+                  description="Disability Assessment Certificate"
+                  bgColor="bg-blue-100"
+                />
               </div>
             </div>
           </div>
