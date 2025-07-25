@@ -1,6 +1,6 @@
 # Overview
 
-This is a full-stack web application built with Express.js, React, and PostgreSQL. The application features a modern UI built with shadcn/ui components and Tailwind CSS, with a backend API using Express.js and Drizzle ORM for database operations.
+This is a full-stack web application built with Express.js, React, and PostgreSQL. The application is a Maharashtra E-Seva Kendra rent agreement calculator that helps users calculate total costs for rent agreements including government charges and service fees. Successfully migrated from Lovable to Replit environment with proper routing and security practices.
 
 # User Preferences
 

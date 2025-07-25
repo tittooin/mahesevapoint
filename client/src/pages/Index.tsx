@@ -7,6 +7,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import headerLogos from '@/assets/header-logos.png';
 import footerLogos from '@/assets/footer-logos.png';
+import heroSection from '@/assets/hero-section.png';
+import contactSection from '@/assets/contact-section.png';
 
 const Index = () => {
   const [propertyArea, setPropertyArea] = useState('Urban');
@@ -102,19 +104,10 @@ const Index = () => {
               </div>
             </div>
             <div className="text-center">
-              <div className="mb-6">
-                <div className="inline-block bg-white px-8 py-4 rounded-lg shadow-lg border-2 border-orange-200">
-                  <h2 className="text-4xl font-bold mb-2" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
-                    <span className="text-orange-500">महाराष्ट्र</span>{" "}
-                    <span className="text-green-600">ई-सेवा</span>{" "}
-                    <span className="text-orange-500">केंद्र</span>
-                  </h2>
-                </div>
-              </div>
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <img 
-                  src={headerLogos} 
-                  alt="Maharashtra E-Seva Kendra - Government Service Logos" 
+                  src={heroSection} 
+                  alt="Maharashtra E-Seva Kendra - Digital Services Platform with Government Logos" 
                   className="w-full h-auto"
                 />
               </div>
@@ -303,18 +296,9 @@ const Index = () => {
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-lg mt-8">
-                <div className="text-center mb-4">
-                  <div className="inline-block bg-white px-6 py-3 rounded-lg shadow-sm border-2 border-orange-200">
-                    <h4 className="text-3xl font-bold text-gray-800" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
-                      <span className="text-orange-500">महाराष्ट्र</span>{" "}
-                      <span className="text-green-600">ई-सेवा</span>{" "}
-                      <span className="text-orange-500">केंद्र</span>
-                    </h4>
-                  </div>
-                </div>
                 <img 
-                  src={footerLogos} 
-                  alt="Maharashtra E-Seva Kendra - Digital India, Aadhaar, MSME" 
+                  src={contactSection} 
+                  alt="Maharashtra E-Seva Kendra - Contact Information with Government Service Logos" 
                   className="w-full h-auto"
                 />
               </div>
