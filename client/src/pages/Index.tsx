@@ -62,7 +62,7 @@ const Index = () => {
 
   useEffect(() => {
     calculateRent();
-  }, [propertyArea, licensePeriod, monthlyRent, deposit, addons]);
+  }, [propertyArea, licensePeriod, monthlyRent, addons]);
 
   const handleAddonChange = (addonKey: string, checked: boolean) => {
     setAddons(prev => ({ ...prev, [addonKey]: checked }));
@@ -73,8 +73,10 @@ const Index = () => {
       {/* Header */}
       <nav className="bg-orange-500 text-white py-4 shadow-lg">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">MahesevaPoint</h1>
-          <div className="hidden md:flex space-x-8">
+          <h1 className="text-2xl font-bold" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
+            महाराष्ट्र ई-सेवा केंद्र
+          </h1>
+          <div className="hidden md:flex space-x-8 text-white">
             <a href="#" className="hover:text-orange-200 transition-colors">Home</a>
             <a href="#" className="hover:text-orange-200 transition-colors">Rent Agreement</a>
             <a href="#" className="hover:text-orange-200 transition-colors">Services</a>
@@ -101,13 +103,15 @@ const Index = () => {
             </div>
             <div className="text-center">
               <div className="mb-6">
-                <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
-                  <span className="text-orange-500">महाराष्ट्र</span>{" "}
-                  <span className="text-green-600">ई-सेवा</span>{" "}
-                  <span className="text-orange-500">केंद्र</span>
-                </h2>
+                <div className="inline-block bg-white px-8 py-4 rounded-lg shadow-lg border-2 border-orange-200">
+                  <h2 className="text-4xl font-bold mb-2" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
+                    <span className="text-orange-500">महाराष्ट्र</span>{" "}
+                    <span className="text-green-600">ई-सेवा</span>{" "}
+                    <span className="text-orange-500">केंद्र</span>
+                  </h2>
+                </div>
               </div>
-              <div className="bg-gray-100 p-6 rounded-lg shadow-sm">
+              <div className="bg-white p-6 rounded-lg shadow-lg">
                 <img 
                   src={headerLogos} 
                   alt="Maharashtra E-Seva Kendra - Government Service Logos" 
@@ -276,33 +280,37 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-3xl font-bold mb-6">Contact MahesevaPoint</h3>
-              <div className="space-y-4">
+              <h3 className="text-3xl font-bold mb-6" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
+                Contact महाराष्ट्र ई-सेवा केंद्र
+              </h3>
+              <div className="space-y-4 text-lg">
                 <div className="flex items-center gap-3">
-                  <span>📍</span>
-                  <span>123 Digital Hub, Tech City, Pune - 411001</span>
+                  <span className="text-2xl">📍</span>
+                  <span>Pune, Maharashtra</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span>📞</span>
-                  <span>+91 98765 43210</span>
+                  <span className="text-2xl">📞</span>
+                  <span>Contact Available</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span>✉️</span>
-                  <span>support@mahesevapoint.com</span>
+                  <span className="text-2xl">✉️</span>
+                  <span>Email Available</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span>🕒</span>
-                  <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
+                  <span className="text-2xl">🕒</span>
+                  <span>Service Hours Available</span>
                 </div>
               </div>
               
-              <div className="bg-white p-4 rounded-lg shadow mt-6">
+              <div className="bg-white p-6 rounded-lg shadow-lg mt-8">
                 <div className="text-center mb-4">
-                  <h4 className="text-2xl font-bold text-gray-800" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
-                    <span className="text-orange-500">महाराष्ट्र</span>{" "}
-                    <span className="text-green-600">ई-सेवा</span>{" "}
-                    <span className="text-orange-500">केंद्र</span>
-                  </h4>
+                  <div className="inline-block bg-white px-6 py-3 rounded-lg shadow-sm border-2 border-orange-200">
+                    <h4 className="text-3xl font-bold text-gray-800" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
+                      <span className="text-orange-500">महाराष्ट्र</span>{" "}
+                      <span className="text-green-600">ई-सेवा</span>{" "}
+                      <span className="text-orange-500">केंद्र</span>
+                    </h4>
+                  </div>
                 </div>
                 <img 
                   src={footerLogos} 
@@ -313,21 +321,27 @@ const Index = () => {
             </div>
             
             <div>
-              <Card>
+              <Card className="bg-gray-100">
                 <CardHeader>
-                  <CardTitle>Get Quick Support</CardTitle>
+                  <CardTitle className="text-gray-800 text-xl">Get Quick Support</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <Input placeholder="Your Name" />
-                    <Input placeholder="Mobile Number" />
+                    <Input 
+                      placeholder="Your Name" 
+                      className="bg-white border-gray-300"
+                    />
+                    <Input 
+                      placeholder="Mobile Number" 
+                      className="bg-white border-gray-300"
+                    />
                     <textarea 
-                      className="w-full p-3 border border-gray-300 rounded-md" 
+                      className="w-full p-3 border border-gray-300 rounded-md bg-white" 
                       rows={3} 
                       placeholder="Your Message"
                     ></textarea>
-                    <Button className="w-full bg-green-600 hover:bg-green-700">
-                      Send Message
+                    <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg">
+                      📧 Send Message
                     </Button>
                   </div>
                 </CardContent>
