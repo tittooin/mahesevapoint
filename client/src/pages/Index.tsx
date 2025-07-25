@@ -118,101 +118,374 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
-              Our <span className="text-orange-500">Digital</span> Services
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Complete range of government and citizen services available online with fast processing and secure documentation
-            </p>
+            <h2 className="text-4xl font-bold mb-4">Our Services</h2>
+            <p className="text-xl text-gray-600">Complete range of digital citizen services</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="text-center">
-                  <div className="bg-orange-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl">📋</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Rent Agreement</h3>
-                  <p className="text-gray-600 mb-4">Complete rent agreement registration with government stamp duty calculation and legal documentation</p>
-                  <Button className="bg-green-600 hover:bg-green-700">Get Started</Button>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="space-y-12">
+            {/* Identity Documents */}
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-orange-500">Identity Documents</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🆔</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Aadhaar Card</h4>
+                      <p className="text-sm text-gray-600 mb-3">Demographic Changes • Aadhaar – PAN Link • Aadhaar – Bank Link</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="text-center">
-                  <div className="bg-blue-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl">🏪</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">MSME Registration</h3>
-                  <p className="text-gray-600 mb-4">Micro, Small & Medium Enterprise registration for business growth and government benefits</p>
-                  <Button variant="outline">Learn More</Button>
-                </div>
-              </CardContent>
-            </Card>
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-green-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">💳</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">PAN Card</h4>
+                      <p className="text-sm text-gray-600 mb-3">New PAN Card • Changes in Existing PAN Card</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="text-center">
-                  <div className="bg-green-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl">🆔</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Aadhaar Services</h3>
-                  <p className="text-gray-600 mb-4">Aadhaar card updates, corrections, and related documentation services</p>
-                  <Button variant="outline">Learn More</Button>
-                </div>
-              </CardContent>
-            </Card>
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-purple-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🗳️</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Voter ID</h4>
+                      <p className="text-sm text-gray-600 mb-3">New Voter Registration • Changes in existing Voter ID</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="text-center">
-                  <div className="bg-purple-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl">🏛️</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Government Certificates</h3>
-                  <p className="text-gray-600 mb-4">Income certificate, caste certificate, domicile certificate and other government documents</p>
-                  <Button variant="outline">Learn More</Button>
-                </div>
-              </CardContent>
-            </Card>
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-yellow-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🚗</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Driving License</h4>
+                      <p className="text-sm text-gray-600 mb-3">Learning • Permanent • Renewal</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="text-center">
-                  <div className="bg-red-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl">🎓</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Education Services</h3>
-                  <p className="text-gray-600 mb-4">School admissions, scholarship applications, and educational certificate verification</p>
-                  <Button variant="outline">Learn More</Button>
-                </div>
-              </CardContent>
-            </Card>
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-red-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">📔</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Passport</h4>
+                      <p className="text-sm text-gray-600 mb-3">International Travel Document</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
 
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="text-center">
-                  <div className="bg-yellow-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl">💼</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Business Services</h3>
-                  <p className="text-gray-600 mb-4">Business registration, license renewals, and compliance documentation</p>
-                  <Button variant="outline">Learn More</Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+            {/* Certificates & Gazette */}
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-orange-500">Certificates & Gazette</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-indigo-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">💰</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Income Certificate</h4>
+                      <p className="text-sm text-gray-600 mb-3">Annual Income Verification</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
 
-          <div className="text-center">
-            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 px-8">
-              View All Services
-            </Button>
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-orange-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">👥</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Caste Certificate</h4>
+                      <p className="text-sm text-gray-600 mb-3">Social Category Verification</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-teal-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🏠</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Domicile Certificate</h4>
+                      <p className="text-sm text-gray-600 mb-3">Residence Verification</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-pink-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">📜</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Non-Creamy Layer</h4>
+                      <p className="text-sm text-gray-600 mb-3">OBC Category Certificate</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-gray-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">📰</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Gazette</h4>
+                      <p className="text-sm text-gray-600 mb-3">Name Change</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Business & Professional Services */}
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-orange-500">Business & Professional Services</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🏪</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Shop Act License</h4>
+                      <p className="text-sm text-gray-600 mb-3">Shop & Establishment License</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-green-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🏭</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Udyam Registration</h4>
+                      <p className="text-sm text-gray-600 mb-3">New Udyam Registration • Changes in Existing Udyam Aadhaar</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-purple-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">📊</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">GST Registration</h4>
+                      <p className="text-sm text-gray-600 mb-3">New GST Registration • GST Filing</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-yellow-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🏬</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Trade License</h4>
+                      <p className="text-sm text-gray-600 mb-3">Municipal Trade License</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-red-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🍽️</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Food License (FSSAI)</h4>
+                      <p className="text-sm text-gray-600 mb-3">New Food License</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Employment & Financial Services */}
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-orange-500">Employment & Financial Services</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-indigo-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">💼</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">PF Services (EPF)</h4>
+                      <p className="text-sm text-gray-600 mb-3">PF Withdrawal • PF KYC • UAN Number</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-teal-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🏥</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">ESI Registration</h4>
+                      <p className="text-sm text-gray-600 mb-3">Employee State Insurance</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Property & Land Services */}
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-orange-500">Property & Land Services</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card className="hover:shadow-lg transition-shadow border-2 border-green-200">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-green-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">📋</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Rent Agreement</h4>
+                      <p className="text-sm text-gray-600 mb-3">Legal Rental Agreement</p>
+                      <Button className="bg-green-600 hover:bg-green-700" size="sm">Get Started</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">📄</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Land Record Services</h4>
+                      <p className="text-sm text-gray-600 mb-3">Property Record Verification</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-purple-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🏡</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Property Registration</h4>
+                      <p className="text-sm text-gray-600 mb-3">Property Transfer Registration</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-orange-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🔄</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Mutation of Property</h4>
+                      <p className="text-sm text-gray-600 mb-3">Property Ownership Transfer</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Other Essential Services */}
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-orange-500">Other Essential Services</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-yellow-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">🍚</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Ration Card</h4>
+                      <p className="text-sm text-gray-600 mb-3">Public Distribution System</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-pink-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">👶</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Birth Certificate</h4>
+                      <p className="text-sm text-gray-600 mb-3">Birth Registration Certificate</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-red-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">💒</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Marriage Registration</h4>
+                      <p className="text-sm text-gray-600 mb-3">Marriage Certificate</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                        <span className="text-xl">♿</span>
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Disability Certificate</h4>
+                      <p className="text-sm text-gray-600 mb-3">Disability Assessment Certificate</p>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
