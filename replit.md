@@ -2,6 +2,15 @@
 
 This is a full-stack web application built with Express.js, React, and PostgreSQL. The application is a Maharashtra E-Seva Kendra rent agreement calculator that helps users calculate total costs for rent agreements including government charges and service fees. Successfully migrated from Lovable to Replit environment with proper routing and security practices.
 
+## Recent Changes (January 2025)
+- ✅ Successfully migrated from Lovable to Replit environment
+- ✅ Converted routing from react-router-dom to wouter for Replit compatibility
+- ✅ Fixed calculator input reset issues (monthly rent and deposit now persist)
+- ✅ Added authentic Maharashtra E-Seva branding with government service logos
+- ✅ Integrated Tiro Devanagari Marathi font for proper Hindi text display
+- ✅ Replaced all placeholder images with authentic Maharashtra E-Seva imagery
+- ✅ Application is fully functional and ready for production deployment
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
