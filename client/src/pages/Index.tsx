@@ -9,6 +9,7 @@ import headerLogos from '@/assets/header-logos.png';
 import footerLogos from '@/assets/footer-logos.png';
 import heroSection from '@/assets/hero-section.png';
 import contactSection from '@/assets/contact-section.png';
+import contactFooter from '@/assets/contact-footer.jpg';
 
 const Index = () => {
   const [propertyArea, setPropertyArea] = useState('Urban');
@@ -297,8 +298,8 @@ const Index = () => {
               
               <div className="bg-white p-6 rounded-lg shadow-lg mt-8">
                 <img 
-                  src={contactSection} 
-                  alt="Maharashtra E-Seva Kendra - Contact Information with Government Service Logos" 
+                  src={contactFooter} 
+                  alt="Maharashtra E-Seva Kendra - Contact Footer with Government Service Logos" 
                   className="w-full h-auto"
                 />
               </div>
