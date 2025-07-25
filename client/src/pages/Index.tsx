@@ -278,28 +278,6 @@ const Index = () => {
         'Marriage certificate of parents',
         'Vaccination records'
       ]
-    },
-    'marriage': {
-      title: 'Marriage Registration',
-      documents: [
-        'Application form for marriage registration',
-        'Age proof of bride and groom',
-        'Address proof of both parties',
-        'Passport size photographs',
-        'Invitation card or marriage proof',
-        'Two witnesses with identity proof'
-      ]
-    },
-    'disability': {
-      title: 'Disability Certificate',
-      documents: [
-        'Application form for disability certificate',
-        'Medical reports from authorized doctor',
-        'Identity proof (Aadhaar, PAN)',
-        'Address proof documents',
-        'Passport size photographs',
-        'Previous disability certificate (if any)'
-      ]
     }
   };
 
@@ -384,12 +362,12 @@ const Index = () => {
             </CardContent>
           </Card>
         </DialogTrigger>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-2xl h-[600px] overflow-hidden" aria-describedby="service-dialog-description">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold">{serviceData.title}</DialogTitle>
           </DialogHeader>
-          <div className="space-y-6">
-            <div>
+          <div id="service-dialog-description" className="flex flex-col h-full space-y-4 overflow-hidden">
+            <div className="flex-1 overflow-y-auto">
               <h3 className="text-lg font-semibold text-blue-600 mb-4">Required Documents:</h3>
               <div className="space-y-2">
                 {serviceData.documents.map((doc: string, index: number) => (
@@ -408,14 +386,14 @@ const Index = () => {
                 </p>
               </div>
             </div>
-            <div>
+            <div className="flex-shrink-0 mt-auto">
               <h3 className="text-lg font-semibold mb-4">Get in Touch</h3>
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <Input placeholder="Your Name" />
                   <Input placeholder="Mobile Number" />
                 </div>
-                <Textarea placeholder="Additional Requirements or Questions" className="min-h-[100px]" />
+                <Textarea placeholder="Additional Requirements or Questions" className="h-20 resize-none" />
                 <Button className="w-full bg-green-600 hover:bg-green-700">
                   Request Service
                 </Button>
@@ -684,20 +662,6 @@ const Index = () => {
                   title="Birth Certificate"
                   description="Birth Registration Certificate"
                   bgColor="bg-pink-100"
-                />
-                <ServiceDialog 
-                  serviceKey="marriage"
-                  icon="💒"
-                  title="Marriage Registration"
-                  description="Marriage Certificate"
-                  bgColor="bg-red-100"
-                />
-                <ServiceDialog 
-                  serviceKey="disability"
-                  icon="♿"
-                  title="Disability Certificate"
-                  description="Disability Assessment Certificate"
-                  bgColor="bg-blue-100"
                 />
               </div>
             </div>
