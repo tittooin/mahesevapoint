@@ -327,6 +327,14 @@ const Index = () => {
     setAddons(prev => ({ ...prev, [addonKey]: checked }));
   };
 
+  // Smooth scroll navigation function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // Service Dialog Component
   const ServiceDialog = ({ 
     serviceKey, 
@@ -412,26 +420,26 @@ const Index = () => {
             महाराष्ट्र ई-सेवा केंद्र
           </h1>
           <div className="hidden md:flex space-x-8 text-white">
-            <a href="#" className="hover:text-orange-200 transition-colors">Home</a>
-            <a href="#" className="hover:text-orange-200 transition-colors">Rent Agreement</a>
-            <a href="#" className="hover:text-orange-200 transition-colors">Services</a>
-            <a href="#" className="hover:text-orange-200 transition-colors">Contact</a>
+            <button onClick={() => scrollToSection('hero')} className="hover:text-orange-200 transition-colors">Home</button>
+            <button onClick={() => scrollToSection('rent-calculator')} className="hover:text-orange-200 transition-colors">Rent Agreement</button>
+            <button onClick={() => scrollToSection('services')} className="hover:text-orange-200 transition-colors">Services</button>
+            <button onClick={() => scrollToSection('contact')} className="hover:text-orange-200 transition-colors">Contact</button>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="py-12 bg-white">
+      <section id="hero" className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h1 className="text-4xl font-bold mb-4">Digital Services at Your Fingertips</h1>
               <p className="text-xl text-gray-600 mb-6">Complete online platform for all your Indian citizen services. Fast, reliable, and secure digital solutions.</p>
               <div className="flex gap-4">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700">
+                <Button size="lg" className="bg-green-600 hover:bg-green-700" onClick={() => scrollToSection('rent-calculator')}>
                   Rent Agreement
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" onClick={() => scrollToSection('services')}>
                   All Services
                 </Button>
               </div>
@@ -450,7 +458,7 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-12 bg-white">
+      <section id="services" className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Our Services</h2>
@@ -665,7 +673,7 @@ const Index = () => {
       </section>
 
       {/* Rent Calculator */}
-      <section className="py-12 bg-gray-50">
+      <section id="rent-calculator" className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
@@ -806,7 +814,7 @@ const Index = () => {
                 </div>
 
                 <div className="text-center mt-6">
-                  <Button className="bg-red-600 hover:bg-red-700 px-8">
+                  <Button className="bg-red-600 hover:bg-red-700 px-8" onClick={() => scrollToSection('contact')}>
                     Contact Us
                   </Button>
                 </div>
@@ -817,7 +825,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-12 bg-orange-500 text-white">
+      <section id="contact" className="py-12 bg-orange-500 text-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8">
             <div>
