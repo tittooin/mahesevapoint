@@ -445,11 +445,11 @@ const Index = () => {
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-white p-6 rounded-lg shadow-lg">
+              <div className="bg-white p-4 rounded-lg shadow-lg">
                 <img 
                   src={heroSectionNew} 
                   alt="Maharashtra E-Seva Kendra - Complete Digital Services Platform with All Government Service Logos" 
-                  className="w-full h-auto max-h-48 object-contain"
+                  className="w-full h-auto max-h-40 object-contain mx-auto"
                 />
               </div>
             </div>
@@ -851,11 +851,11 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="bg-white p-6 rounded-lg shadow-lg mt-8">
+              <div className="bg-white p-4 rounded-lg shadow-lg mt-8">
                 <img 
                   src={contactFooterFinal} 
                   alt="Maharashtra E-Seva Kendra - Digital India, Aadhaar, MSME Service Logos" 
-                  className="w-full h-auto max-h-20 object-contain"
+                  className="w-full h-auto max-h-16 object-contain mx-auto"
                 />
               </div>
             </div>
