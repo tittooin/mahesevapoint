@@ -449,7 +449,7 @@ const Index = () => {
                 <img 
                   src={heroSectionNew} 
                   alt="Maharashtra E-Seva Kendra - Complete Digital Services Platform with All Government Service Logos" 
-                  className="w-full h-auto"
+                  className="w-full h-auto max-h-64 object-contain"
                 />
               </div>
             </div>
@@ -855,7 +855,7 @@ const Index = () => {
                 <img 
                   src={contactFooterFinal} 
                   alt="Maharashtra E-Seva Kendra - Digital India, Aadhaar, MSME Service Logos" 
-                  className="w-full h-auto"
+                  className="w-full h-auto max-h-20 object-contain"
                 />
               </div>
             </div>
