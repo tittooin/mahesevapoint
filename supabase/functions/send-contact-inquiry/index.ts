@@ -1,7 +1,11 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+if (!RESEND_API_KEY) {
+  throw new Error("RESEND_API_KEY environment variable is not set.");
+}
+const resend = new Resend(RESEND_API_KEY);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -53,23 +57,36 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Email sent successfully:", emailResponse);
 
-    // Format WhatsApp message
-    const whatsappMessage = `*New Contact Inquiry - Maharashtra E-Seva Kendra*
-
-*Name:* ${name}
-*Mobile:* ${mobile}
-${service ? `*Service:* ${service}` : ''}
-*Message:* ${message}
-
-_Please respond to this inquiry promptly._`;
-
-    // Send WhatsApp notification using WhatsApp Business API
-    // You'll need to replace this URL with your actual WhatsApp Business API endpoint
-    const whatsappResponse = await fetch(`https://api.whatsapp.com/send?phone=918956548048&text=${encodeURIComponent(whatsappMessage)}`, {
-      method: "GET",
+    // WhatsApp notification has been removed because the previous implementation was incorrect.
+    // The URL used (`https://api.whatsapp.com/send`) is for creating a "click to chat" link
+    // and does not send a message programmatically from a server.
+    //
+    // To implement WhatsApp notifications correctly, you need to:
+    // 1. Set up a WhatsApp Business Account.
+    // 2. Get an access token for the WhatsApp Business API (Meta Graph API).
+    // 3. Send a POST request to the correct API endpoint (e.g., `https://graph.facebook.com/v19.0/YOUR_PHONE_NUMBER_ID/messages`).
+    // 4. The request body must be a valid WhatsApp message template.
+    //
+    // Example of a correct fetch call:
+    /*
+    const whatsappResponse = await fetch(`https://graph.facebook.com/v19.0/YOUR_PHONE_NUMBER_ID/messages`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer YOUR_ACCESS_TOKEN`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        messaging_product: "whatsapp",
+        to: "RECIPIENT_PHONE_NUMBER",
+        type: "template",
+        template: {
+          name: "your_template_name",
+          language: { code: "en_US" },
+          components: [ ... ]
+        }
+      })
     });
-
-    console.log("WhatsApp notification attempted");
+    */
 
     return new Response(JSON.stringify({ 
       success: true, 

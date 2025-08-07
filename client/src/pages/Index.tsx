@@ -339,10 +339,11 @@ const Index = () => {
   };
 
   // Contact form submission function
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!contactForm.name || !contactForm.mobile || !contactForm.message) {
+  const handleContactSubmit = async (
+    formData: { name: string; mobile: string; message: string },
+    service?: string
+  ) => {
+    if (!formData.name || !formData.mobile || !formData.message) {
       toast({
         title: "Error",
         description: "Please fill in all fields",
@@ -355,11 +356,7 @@ const Index = () => {
     
     try {
       const { data, error } = await supabase.functions.invoke('send-contact-inquiry', {
-        body: {
-          name: contactForm.name,
-          mobile: contactForm.mobile,
-          message: contactForm.message
-        }
+        body: { ...formData, service }
       });
 
       if (error) throw error;
@@ -369,15 +366,19 @@ const Index = () => {
         description: "Your inquiry has been sent successfully. We'll contact you soon.",
       });
 
-      // Reset form
-      setContactForm({ name: '', mobile: '', message: '' });
+      // Reset main contact form if it was submitted
+      if (!service) {
+        setContactForm({ name: '', mobile: '', message: '' });
+      }
+      return true; // Indicate success
     } catch (error) {
       console.error('Error sending contact inquiry:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: `Failed to send message. Please try again.`,
         variant: "destructive",
       });
+      return false; // Indicate failure
     } finally {
       setIsSubmitting(false);
     }
@@ -406,8 +407,25 @@ const Index = () => {
     bgColor: string;
   }) => {
     const serviceData = serviceDocuments[serviceKey];
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [dialogForm, setDialogForm] = useState({ name: '', mobile: '', message: '' });
+
+    const handleDialogFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setDialogForm(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleDialogSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      const success = await handleContactSubmit(dialogForm, serviceData.title);
+      if (success) {
+        setDialogForm({ name: '', mobile: '', message: '' }); // Reset form
+        setDialogOpen(false); // Close dialog
+      }
+    };
+
     return (
-      <Dialog>
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogTrigger asChild>
           <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardContent className="p-6">
@@ -450,16 +468,39 @@ const Index = () => {
             </div>
             <div className="flex-shrink-0 mt-auto">
               <h3 className="text-lg font-semibold mb-4">Get in Touch</h3>
-              <div className="space-y-4">
+              <form onSubmit={handleDialogSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <Input placeholder="Your Name" />
-                  <Input placeholder="Mobile Number" />
+                  <Input
+                    name="name"
+                    placeholder="Your Name"
+                    value={dialogForm.name}
+                    onChange={handleDialogFormChange}
+                    required
+                  />
+                  <Input
+                    name="mobile"
+                    placeholder="Mobile Number"
+                    value={dialogForm.mobile}
+                    onChange={handleDialogFormChange}
+                    required
+                  />
                 </div>
-                <Textarea placeholder="Additional Requirements or Questions" className="h-20 resize-none" />
-                <Button className="w-full bg-brand-secondary hover:bg-brand-secondary/90">
-                  Request Service
+                <Textarea
+                  name="message"
+                  placeholder="Additional Requirements or Questions"
+                  className="h-20 resize-none"
+                  value={dialogForm.message}
+                  onChange={handleDialogFormChange}
+                  required
+                />
+                <Button
+                  type="submit"
+                  className="w-full bg-brand-secondary hover:bg-brand-secondary/90"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Requesting..." : "Request Service"}
                 </Button>
-              </div>
+              </form>
             </div>
           </div>
         </DialogContent>
@@ -895,15 +936,15 @@ const Index = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">📞</span>
-                  <span>Contact Available</span>
+                  <a href="tel:+918956548048" className="hover:underline">+91 89565 48048</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">✉️</span>
-                  <span>Email Available</span>
+                  <a href="mailto:contact@maharashtraeseva.com" className="hover:underline">contact@maharashtraeseva.com</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">🕒</span>
-                  <span>Service Hours Available</span>
+                  <span>Mon - Sat: 10:00 AM - 7:00 PM</span>
                 </div>
               </div>
               
@@ -922,7 +963,10 @@ const Index = () => {
                   <CardTitle className="text-gray-800 text-xl">Get Quick Support</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleContactSubmit}>
+                  <form onSubmit={(e) => {
+                    e.preventDefault();
+                    handleContactSubmit(contactForm);
+                  }}>
                     <div className="space-y-4">
                       <Input 
                         placeholder="Your Name" 
