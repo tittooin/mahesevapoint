@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle, Info } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/components/ui/use-toast';
 import headerLogos from '@/assets/header-logos.png';
 import footerLogos from '@/assets/footer-logos.png';
 import heroSectionNew from '@/assets/hero-section-new.png';
@@ -15,6 +17,7 @@ import contactSection from '@/assets/contact-section.png';
 import contactFooterFinal from '@/assets/contact-footer-final.png';
 
 const Index = () => {
+  const { toast } = useToast();
   const [propertyArea, setPropertyArea] = useState('Urban');
   const [licensePeriod, setLicensePeriod] = useState(12);
   const [monthlyRent, setMonthlyRent] = useState('');
@@ -27,6 +30,14 @@ const Index = () => {
   });
   const [totalAmount, setTotalAmount] = useState(1999);
   const [stampDuty, setStampDuty] = useState(0);
+  
+  // Contact form state
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    mobile: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Service documents data
   const serviceDocuments = {
@@ -325,6 +336,51 @@ const Index = () => {
 
   const handleAddonChange = (addonKey: string, checked: boolean) => {
     setAddons(prev => ({ ...prev, [addonKey]: checked }));
+  };
+
+  // Contact form submission function
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!contactForm.name || !contactForm.mobile || !contactForm.message) {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-inquiry', {
+        body: {
+          name: contactForm.name,
+          mobile: contactForm.mobile,
+          message: contactForm.message
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Message Sent!",
+        description: "Your inquiry has been sent successfully. We'll contact you soon.",
+      });
+
+      // Reset form
+      setContactForm({ name: '', mobile: '', message: '' });
+    } catch (error) {
+      console.error('Error sending contact inquiry:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Smooth scroll navigation function
@@ -866,24 +922,39 @@ const Index = () => {
                   <CardTitle className="text-gray-800 text-xl">Get Quick Support</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <Input 
-                      placeholder="Your Name" 
-                      className="bg-white border-gray-300"
-                    />
-                    <Input 
-                      placeholder="Mobile Number" 
-                      className="bg-white border-gray-300"
-                    />
-                    <textarea 
-                      className="w-full p-3 border border-gray-300 rounded-md bg-white" 
-                      rows={3} 
-                      placeholder="Your Message"
-                    ></textarea>
-                    <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg">
-                      📧 Send Message
-                    </Button>
-                  </div>
+                  <form onSubmit={handleContactSubmit}>
+                    <div className="space-y-4">
+                      <Input 
+                        placeholder="Your Name" 
+                        className="bg-white border-gray-300"
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
+                        required
+                      />
+                      <Input 
+                        placeholder="Mobile Number" 
+                        className="bg-white border-gray-300"
+                        value={contactForm.mobile}
+                        onChange={(e) => setContactForm(prev => ({ ...prev, mobile: e.target.value }))}
+                        required
+                      />
+                      <Textarea 
+                        className="bg-white border-gray-300" 
+                        rows={3} 
+                        placeholder="Your Message"
+                        value={contactForm.message}
+                        onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
+                        required
+                      />
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Sending..." : "📧 Send Message"}
+                      </Button>
+                    </div>
+                  </form>
                 </CardContent>
               </Card>
             </div>
