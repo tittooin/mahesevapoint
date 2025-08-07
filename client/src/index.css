@@ -40,20 +40,21 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
 
+    /* Custom semantic tokens for Maharashtra E-Seva Kendra */
+    --brand-primary: 25 95% 53%; /* Orange */
+    --brand-secondary: 142 76% 36%; /* Green */
+    --brand-accent: 221 83% 53%; /* Blue */
+    --brand-danger: 0 84% 60%; /* Red */
+    --neutral-light: 210 20% 96%; /* Light gray */
+    --neutral-medium: 210 16% 93%; /* Medium gray */
+
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 

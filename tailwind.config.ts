@@ -61,6 +61,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "brand-primary": "hsl(var(--brand-primary))",
+        "brand-secondary": "hsl(var(--brand-secondary))",
+        "brand-accent": "hsl(var(--brand-accent))",
+        "brand-danger": "hsl(var(--brand-danger))",
+        "neutral-light": "hsl(var(--neutral-light))",
+        "neutral-medium": "hsl(var(--neutral-medium))",
       },
       keyframes: {
         "accordion-down": {

@@ -417,7 +417,7 @@ const Index = () => {
                 </div>
                 <h4 className="text-lg font-bold mb-2">{title}</h4>
                 <p className="text-sm text-gray-600 mb-3">{description}</p>
-                <Button className="bg-green-600 hover:bg-green-700" size="sm">
+                <Button className="bg-brand-secondary hover:bg-brand-secondary/90" size="sm">
                   Get Started
                 </Button>
               </div>
@@ -440,7 +440,7 @@ const Index = () => {
                 ))}
               </div>
             </div>
-            <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="bg-brand-accent/10 p-4 rounded-lg">
               <div className="flex items-start space-x-2">
                 <Info className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
                 <p className="text-sm text-blue-700">
@@ -456,7 +456,7 @@ const Index = () => {
                   <Input placeholder="Mobile Number" />
                 </div>
                 <Textarea placeholder="Additional Requirements or Questions" className="h-20 resize-none" />
-                <Button className="w-full bg-green-600 hover:bg-green-700">
+                <Button className="w-full bg-brand-secondary hover:bg-brand-secondary/90">
                   Request Service
                 </Button>
               </div>
@@ -468,9 +468,9 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-brand-primary/10 to-background">
       {/* Header */}
-      <nav className="bg-orange-500 text-white py-4 shadow-lg">
+      <nav className="bg-brand-primary text-white py-4 shadow-lg">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
             महाराष्ट्र ई-सेवा केंद्र
@@ -492,7 +492,7 @@ const Index = () => {
               <h1 className="text-4xl font-bold mb-4">Digital Services at Your Fingertips</h1>
               <p className="text-xl text-gray-600 mb-6">Complete online platform for all your Indian citizen services. Fast, reliable, and secure digital solutions.</p>
               <div className="flex gap-4">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700" onClick={() => scrollToSection('rent-calculator')}>
+                <Button size="lg" className="bg-brand-secondary hover:bg-brand-secondary/90" onClick={() => scrollToSection('rent-calculator')}>
                   Rent Agreement
                 </Button>
                 <Button variant="outline" size="lg" onClick={() => scrollToSection('services')}>
@@ -501,7 +501,7 @@ const Index = () => {
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-white p-4 rounded-lg shadow-lg">
+              <div className="bg-card p-4 rounded-lg shadow-lg">
                 <img 
                   src={heroSectionNew} 
                   alt="Maharashtra E-Seva Kendra - Complete Digital Services Platform with All Government Service Logos" 
@@ -729,11 +729,11 @@ const Index = () => {
       </section>
 
       {/* Rent Calculator */}
-      <section id="rent-calculator" className="py-12 bg-gray-50">
+      <section id="rent-calculator" className="py-12 bg-neutral-light">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
-              <div className="inline-block bg-orange-500 text-white px-6 py-3 rounded-lg">
+              <div className="inline-block bg-brand-primary text-white px-6 py-3 rounded-lg">
                 <h2 className="text-3xl font-bold">Rent Agreement Calculator</h2>
               </div>
               <p className="text-gray-600 text-lg mt-4">
@@ -798,15 +798,15 @@ const Index = () => {
                   <div className="grid md:grid-cols-3 gap-4">
                     <div>
                       <Label className="text-gray-700 font-semibold">Govt. Reg Charges</Label>
-                      <div className="p-3 bg-gray-100 rounded">₹1,000</div>
+                      <div className="p-3 bg-neutral-medium rounded">₹1,000</div>
                     </div>
                     <div>
                       <Label className="text-gray-700 font-semibold">Govt. DHC</Label>
-                      <div className="p-3 bg-gray-100 rounded">₹300</div>
+                      <div className="p-3 bg-neutral-medium rounded">₹300</div>
                     </div>
                     <div>
                       <Label className="text-gray-700 font-semibold">Govt. Stamp Duty</Label>
-                      <div className="p-3 bg-gray-100 rounded">₹{stampDuty.toLocaleString()}</div>
+                      <div className="p-3 bg-neutral-medium rounded">₹{stampDuty.toLocaleString()}</div>
                     </div>
                   </div>
                 </div>
@@ -814,7 +814,7 @@ const Index = () => {
                 {/* Service Charges */}
                 <div className="mb-6">
                   <Label className="font-bold text-lg">Our Service Charges</Label>
-                  <div className="p-3 bg-gray-100 rounded">₹599</div>
+                  <div className="p-3 bg-neutral-medium rounded">₹599</div>
                 </div>
 
                 {/* Add-ons */}
@@ -857,20 +857,20 @@ const Index = () => {
                 </div>
 
                 <div className="text-center mb-6">
-                  <Button onClick={calculateRent} size="lg" className="bg-green-600 hover:bg-green-700 px-8">
+                  <Button onClick={calculateRent} size="lg" className="bg-brand-secondary hover:bg-brand-secondary/90 px-8">
                     Calculate Total
                   </Button>
                 </div>
 
                 {/* Total Display */}
-                <div className="bg-blue-500 text-white text-center py-6 rounded-lg shadow-lg">
+                <div className="bg-brand-accent text-white text-center py-6 rounded-lg shadow-lg">
                   <div className="text-2xl font-semibold">
                     Total Cost including Govt. Charges: ₹{totalAmount.toLocaleString()}
                   </div>
                 </div>
 
                 <div className="text-center mt-6">
-                  <Button className="bg-red-600 hover:bg-red-700 px-8" onClick={() => scrollToSection('contact')}>
+                  <Button className="bg-brand-danger hover:bg-brand-danger/90 px-8" onClick={() => scrollToSection('contact')}>
                     Contact Us
                   </Button>
                 </div>
@@ -881,7 +881,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-12 bg-orange-500 text-white">
+      <section id="contact" className="py-12 bg-brand-primary text-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8">
             <div>
@@ -907,7 +907,7 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="bg-white p-4 rounded-lg shadow-lg mt-8">
+              <div className="bg-card p-4 rounded-lg shadow-lg mt-8">
                 <img 
                   src={contactFooterFinal} 
                   alt="Maharashtra E-Seva Kendra - Digital India, Aadhaar, MSME Service Logos" 
@@ -917,7 +917,7 @@ const Index = () => {
             </div>
             
             <div>
-              <Card className="bg-gray-100">
+              <Card className="bg-neutral-medium">
                 <CardHeader>
                   <CardTitle className="text-gray-800 text-xl">Get Quick Support</CardTitle>
                 </CardHeader>
@@ -926,20 +926,20 @@ const Index = () => {
                     <div className="space-y-4">
                       <Input 
                         placeholder="Your Name" 
-                        className="bg-white border-gray-300"
+                        className="bg-card border-input"
                         value={contactForm.name}
                         onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
                         required
                       />
                       <Input 
                         placeholder="Mobile Number" 
-                        className="bg-white border-gray-300"
+                        className="bg-card border-input"
                         value={contactForm.mobile}
                         onChange={(e) => setContactForm(prev => ({ ...prev, mobile: e.target.value }))}
                         required
                       />
                       <Textarea 
-                        className="bg-white border-gray-300" 
+                        className="bg-card border-input" 
                         rows={3} 
                         placeholder="Your Message"
                         value={contactForm.message}
@@ -948,7 +948,7 @@ const Index = () => {
                       />
                       <Button 
                         type="submit" 
-                        className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg"
+                        className="w-full bg-brand-secondary hover:bg-brand-secondary/90 text-white py-3 text-lg"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? "Sending..." : "📧 Send Message"}
