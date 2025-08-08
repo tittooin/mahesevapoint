@@ -10,11 +10,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle, Info } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/components/ui/use-toast';
-import headerLogos from '@/assets/header-logos.png';
-import footerLogos from '@/assets/footer-logos.png';
-import heroSectionNew from '@/assets/hero-section-new.png';
-import contactSection from '@/assets/contact-section.png';
-import contactFooterFinal from '@/assets/contact-footer-final.png';
+import headerLogos from '@assets/image_1753438109639.png';
+import footerLogos from '@assets/image_1753534885669.png';
+import heroSectionNew from '@assets/image_1753438097282.png';
+import contactSection from '@assets/image_1753439564592.png';
+import contactFooterFinal from '@assets/image_1753534957299.png';
 
 const Index = () => {
   const { toast } = useToast();
