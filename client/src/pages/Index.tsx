@@ -20,16 +20,17 @@ const Index = () => {
   const { toast } = useToast();
   const [propertyArea, setPropertyArea] = useState('Urban');
   const [licensePeriod, setLicensePeriod] = useState(12);
-  const [monthlyRent, setMonthlyRent] = useState('');
-  const [deposit, setDeposit] = useState('');
+  const [monthlyRent, setMonthlyRent] = useState('0');
+  const [deposit, setDeposit] = useState('0');
   const [addons, setAddons] = useState({
     homeVisit: false,
     extraVisitSame: false,
     extraVisitOut: false,
     remoteAssist: false
   });
-  const [totalAmount, setTotalAmount] = useState(1999);
+  const [totalAmount, setTotalAmount] = useState(0);
   const [stampDuty, setStampDuty] = useState(0);
+  const [isCalculated, setIsCalculated] = useState(false);
   
   // Contact form state
   const [contactForm, setContactForm] = useState({
@@ -38,6 +39,7 @@ const Index = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isContactSubmitted, setIsContactSubmitted] = useState(false);
 
   // Service documents data
   const serviceDocuments = {
@@ -296,6 +298,7 @@ const Index = () => {
     console.log('Calculating rent...', { monthlyRent, licensePeriod, propertyArea });
     
     const monthlyRentNum = parseFloat(monthlyRent) || 0;
+    const depositNum = parseFloat(deposit) || 0;
     
     // Fixed charges
     const govtRegFee = 1000;
@@ -316,23 +319,25 @@ const Index = () => {
     if (addons.extraVisitOut) addonsTotal += 2000;
     if (addons.remoteAssist) addonsTotal += 2000;
 
+    // Add 10% of deposit amount to the total
+    const depositTenPercent = Math.round(depositNum * 0.1);
+
     // Calculate total
-    const total = govtRegFee + dhcFee + serviceFee + calculatedStampDuty + addonsTotal;
+    const total = govtRegFee + dhcFee + serviceFee + calculatedStampDuty + addonsTotal + depositTenPercent;
 
     setStampDuty(calculatedStampDuty);
     setTotalAmount(total);
+    setIsCalculated(true);
 
     console.log('Calculation complete:', {
       totalRent: monthlyRentNum * licensePeriod,
       stampDuty: calculatedStampDuty,
       addonsTotal,
+      depositTenPercent,
       total
     });
   };
 
-  useEffect(() => {
-    calculateRent();
-  }, [propertyArea, licensePeriod, monthlyRent, addons]);
 
   const handleAddonChange = (addonKey: string, checked: boolean) => {
     setAddons(prev => ({ ...prev, [addonKey]: checked }));
@@ -369,8 +374,14 @@ const Index = () => {
         description: "Your inquiry has been sent successfully. We'll contact you soon.",
       });
 
-      // Reset form
+      // Reset form and show success
       setContactForm({ name: '', mobile: '', message: '' });
+      setIsContactSubmitted(true);
+      
+      // Reset confirmation after 5 seconds
+      setTimeout(() => {
+        setIsContactSubmitted(false);
+      }, 5000);
     } catch (error) {
       console.error('Error sending contact inquiry:', error);
       toast({
@@ -862,12 +873,14 @@ const Index = () => {
                   </Button>
                 </div>
 
-                {/* Total Display */}
-                <div className="bg-brand-accent text-white text-center py-6 rounded-lg shadow-lg">
-                  <div className="text-2xl font-semibold">
-                    Total Cost including Govt. Charges: ₹{totalAmount.toLocaleString()}
+                {/* Total Display - Only show after calculation */}
+                {isCalculated && (
+                  <div className="bg-brand-accent text-white text-center py-6 rounded-lg shadow-lg">
+                    <div className="text-2xl font-semibold">
+                      Total Cost including Govt. Charges: ₹{totalAmount.toLocaleString()}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div className="text-center mt-6">
                   <Button className="bg-brand-danger hover:bg-brand-danger/90 px-8" onClick={() => scrollToSection('contact')}>
@@ -922,39 +935,47 @@ const Index = () => {
                   <CardTitle className="text-gray-800 text-xl">Get Quick Support</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleContactSubmit}>
-                    <div className="space-y-4">
-                      <Input 
-                        placeholder="Your Name" 
-                        className="bg-card border-input"
-                        value={contactForm.name}
-                        onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
-                        required
-                      />
-                      <Input 
-                        placeholder="Mobile Number" 
-                        className="bg-card border-input"
-                        value={contactForm.mobile}
-                        onChange={(e) => setContactForm(prev => ({ ...prev, mobile: e.target.value }))}
-                        required
-                      />
-                      <Textarea 
-                        className="bg-card border-input" 
-                        rows={3} 
-                        placeholder="Your Message"
-                        value={contactForm.message}
-                        onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
-                        required
-                      />
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-brand-secondary hover:bg-brand-secondary/90 text-white py-3 text-lg"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? "Sending..." : "📧 Send Message"}
-                      </Button>
+                  {isContactSubmitted ? (
+                    <div className="text-center py-8">
+                      <div className="text-green-600 text-6xl mb-4">✅</div>
+                      <h3 className="text-xl font-bold text-green-600 mb-2">Message Sent Successfully!</h3>
+                      <p className="text-gray-600">Thank you for contacting us. We'll get back to you soon.</p>
                     </div>
-                  </form>
+                  ) : (
+                    <form onSubmit={handleContactSubmit}>
+                      <div className="space-y-4">
+                        <Input 
+                          placeholder="Your Name" 
+                          className="bg-card border-input"
+                          value={contactForm.name}
+                          onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
+                          required
+                        />
+                        <Input 
+                          placeholder="Mobile Number" 
+                          className="bg-card border-input"
+                          value={contactForm.mobile}
+                          onChange={(e) => setContactForm(prev => ({ ...prev, mobile: e.target.value }))}
+                          required
+                        />
+                        <Textarea 
+                          className="bg-card border-input" 
+                          rows={3} 
+                          placeholder="Your Message"
+                          value={contactForm.message}
+                          onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
+                          required
+                        />
+                        <Button 
+                          type="submit" 
+                          className="w-full bg-brand-secondary hover:bg-brand-secondary/90 text-white py-3 text-lg"
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? "Sending..." : "📧 Send Message"}
+                        </Button>
+                      </div>
+                    </form>
+                  )}
                 </CardContent>
               </Card>
             </div>
