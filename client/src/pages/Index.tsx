@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle, Info } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import headerLogos from '@assets/image_1753438109639.png';
 import footerLogos from '@assets/image_1753534885669.png';
 import heroSectionNew from '@assets/image_1753438097282.png';
