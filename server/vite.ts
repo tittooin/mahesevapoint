@@ -26,8 +26,14 @@ export async function setupVite(app: Express, server: Server) {
     allowedHosts: true as const,
   };
 
+  // Resolve the Vite config function to ensure root and aliases are applied.
+  const baseConfig =
+    typeof viteConfig === "function"
+      ? await viteConfig({ mode: process.env.NODE_ENV ?? "development", command: "serve" })
+      : viteConfig;
+
   const vite = await createViteServer({
-    ...viteConfig,
+    ...baseConfig,
     configFile: false,
     customLogger: {
       ...viteLogger,
