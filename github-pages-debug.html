@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages Debug - Maharashtra E-Seva</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        code { background: #f8f9fa; padding: 2px 4px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>Maharashtra E-Seva Kendra - Debug Page</h1>
+    <div class="info status">
+        <strong>Debug Information:</strong><br>
+        This page confirms that files are uploaded correctly to GitHub Pages.
+    </div>
+    
+    <h2>File Check:</h2>
+    <div id="file-check">
+        <p>Testing asset loading...</p>
+    </div>
+
+    <h2>Next Steps:</h2>
+    <ol>
+        <li>If you see this page, files are uploaded correctly</li>
+        <li>Check GitHub repository settings: Settings → Pages</li>
+        <li>Ensure source is set to "Deploy from a branch" → main branch</li>
+        <li>Replace this file with the correct index.html</li>
+    </ol>
+
+    <script>
+        // Test if we can load assets
+        const cssTest = document.createElement('link');
+        cssTest.rel = 'stylesheet';
+        cssTest.href = './assets/index-C7PacpIY.css';
+        cssTest.onload = () => {
+            document.getElementById('file-check').innerHTML = '<div class="success status">✅ CSS file loaded successfully</div>';
+        };
+        cssTest.onerror = () => {
+            document.getElementById('file-check').innerHTML = '<div class="error status">❌ CSS file not found - check assets folder</div>';
+        };
+        document.head.appendChild(cssTest);
+    </script>
+</body>
+</html>
