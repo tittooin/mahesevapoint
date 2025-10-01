@@ -1,0 +1,67 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: client/package-lock.json
+
+      - name: Install dependencies
+        working-directory: client
+        run: npm ci
+
+      - name: Build site
+        working-directory: client
+        run: npm run build
+
+      - name: Add CNAME for custom domain
+        run: echo "mahaesevapoint.in" > client/dist/CNAME
+
+      - name: Inject build badge into index.html
+        shell: bash
+        run: |
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          BADGE='<div style="position:fixed;bottom:6px;right:6px;font:12px/1.4 system-ui;background:#00000080;color:#fff;padding:4px 6px;border-radius:4px;z-index:9999">Build '
+          BADGE+="$COMMIT_SHA"
+          BADGE+=' • '
+          BADGE+="$DATE"
+          BADGE+='</div>'
+          sed -i 's|</body>|'"$BADGE"'</body>|' client/dist/index.html || true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: client/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
