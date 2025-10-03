@@ -46,7 +46,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Send email notification
     const emailResponse = await resend.emails.send({
       from: "Maharashtra E-Seva Kendra <onboarding@resend.dev>",
-      to: ["vwadekar753@gmail.com"],
+      to: ["admin@mahesevapoint.in"],
       subject: emailSubject,
       html: emailContent,
     });
