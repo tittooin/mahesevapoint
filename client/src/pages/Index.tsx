@@ -917,7 +917,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-12 bg-brand-primary text-white">
+      <section id="contact" className="pt-12 pb-2 bg-brand-primary text-white">
         <div className="container mx-auto px-4">
           <div className="mb-6">
             <h3 className="text-3xl font-bold mb-6" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
@@ -1020,8 +1020,16 @@ const Index = () => {
               </nav>
             </div>
           </div>
+
+          {/* Copyright inside orange contact section */}
+          <div className="mt-4">
+            <div className="text-white text-center">
+              Copyrighted by VKW Enterprises 2025
+            </div>
+          </div>
         </div>
       </section>
+
     </div>
   );
 };
