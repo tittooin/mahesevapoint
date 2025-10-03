@@ -111,12 +111,14 @@ All colors MUST be HSL.
   .marquee-container {
     overflow: hidden;
     position: relative;
+    padding-block: 8px; /* ensure logos aren't clipped vertically */
   }
   .marquee-track {
     display: flex;
     gap: 2rem;
     animation: marquee 30s linear infinite;
     will-change: transform;
+    width: max-content; /* track sized to content to make -50% shift seamless */
   }
   .marquee-item {
     height: 120px;
@@ -127,5 +129,8 @@ All colors MUST be HSL.
   @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
+  }
+  .marquee-track > * { /* prevent items from shrinking/wrapping */
+    flex: 0 0 auto;
   }
 }
