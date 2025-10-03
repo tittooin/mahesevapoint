@@ -22,7 +22,7 @@ export function log(message: string, source = "express") {
 export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
     middlewareMode: true,
-    hmr: { server },
+    hmr: { server, clientPort: 5000 },
     allowedHosts: true as const,
   };
 
@@ -39,7 +39,7 @@ export async function setupVite(app: Express, server: Server) {
       ...viteLogger,
       error: (msg, options) => {
         viteLogger.error(msg, options);
-        process.exit(1);
+        // Do not exit the process on Vite errors; let the dev server continue running
       },
     },
     server: serverOptions,
@@ -48,6 +48,12 @@ export async function setupVite(app: Express, server: Server) {
 
   app.use(vite.middlewares);
   app.use("*", async (req, res, next) => {
+    // Only serve index.html for standard browser navigations requesting HTML.
+    const accept = req.headers.accept ?? "";
+    if (req.method !== "GET" || !accept.includes("text/html") || req.path.startsWith("/api")) {
+      return next();
+    }
+
     const url = req.originalUrl;
 
     try {

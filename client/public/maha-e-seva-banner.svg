@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="180" viewBox="0 0 1000 180" role="img" aria-labelledby="title desc">
+  <title id="title">महाराष्ट्र ई-सेवा केंद्र</title>
+  <desc id="desc">Tri-color Marathi banner text for Maha E-Seva Kendra</desc>
+  <rect width="100%" height="100%" fill="transparent"/>
+  <g transform="translate(20,125)">
+    <text x="0" y="0" font-family="'Tiro Devanagari Marathi', 'Noto Sans Devanagari', 'Mangal', serif" font-size="120" font-weight="800" dominant-baseline="alphabetic">
+      <tspan fill="#F36F21">महाराष्ट्र</tspan>
+      <tspan dx="20" fill="#0B6A39">ई-सेवा</tspan>
+      <tspan dx="20" fill="#F36F21">केंद्र</tspan>
+    </text>
+  </g>
+</svg>

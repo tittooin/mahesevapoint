@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Router, Route, Switch } from "wouter";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import About from "./pages/About";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +19,8 @@ const App = () => (
       <Router>
         <Switch>
           <Route path="/" component={Index} />
+          <Route path="/about" component={About} />
+          <Route path="/terms" component={Terms} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route component={NotFound} />
         </Switch>

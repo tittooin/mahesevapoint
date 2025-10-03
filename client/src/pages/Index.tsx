@@ -15,13 +15,14 @@ import footerLogos from '../assets/footer-logos.png';
 import heroSectionNew from '../assets/hero-section-new.png';
 import contactSection from '../assets/contact-section.png';
 import contactFooterFinal from '../assets/contact-footer-final.png';
+import { Link } from "wouter";
 
 const Index = () => {
   const { toast } = useToast();
   const [propertyArea, setPropertyArea] = useState('Urban');
-  const [licensePeriod, setLicensePeriod] = useState(12);
-  const [monthlyRent, setMonthlyRent] = useState('0');
-  const [deposit, setDeposit] = useState('0');
+  const [licensePeriod, setLicensePeriod] = useState(0);
+  const [monthlyRent, setMonthlyRent] = useState('');
+  const [deposit, setDeposit] = useState('');
   const [addons, setAddons] = useState({
     homeVisit: false,
     extraVisitSame: false,
@@ -30,6 +31,7 @@ const Index = () => {
   });
   const [totalAmount, setTotalAmount] = useState(0);
   const [stampDuty, setStampDuty] = useState(0);
+  const [govtStampDutyTenPercent, setGovtStampDutyTenPercent] = useState(0);
   const [isCalculated, setIsCalculated] = useState(false);
   
   // Contact form state
@@ -321,19 +323,27 @@ const Index = () => {
 
     // Add 10% of deposit amount to the total
     const depositTenPercent = Math.round(depositNum * 0.1);
-
-    // Calculate total
-    const total = govtRegFee + dhcFee + serviceFee + calculatedStampDuty + addonsTotal + depositTenPercent;
-
+    
+    // Subtotal before 10% Govt. Stamp Duty
+    const subtotal = govtRegFee + dhcFee + serviceFee + calculatedStampDuty + addonsTotal + depositTenPercent;
+    
+    // Govt. Stamp Duty (10%) applied on subtotal
+    const calculatedGovtStampDutyTenPercent = Math.round(subtotal * 0.10);
+    
+    // Final total
+    const total = subtotal + calculatedGovtStampDutyTenPercent;
+    
     setStampDuty(calculatedStampDuty);
+    setGovtStampDutyTenPercent(calculatedGovtStampDutyTenPercent);
     setTotalAmount(total);
     setIsCalculated(true);
-
+    
     console.log('Calculation complete:', {
       totalRent: monthlyRentNum * licensePeriod,
       stampDuty: calculatedStampDuty,
       addonsTotal,
       depositTenPercent,
+      govtStampDutyTenPercent: calculatedGovtStampDutyTenPercent,
       total
     });
   };
@@ -435,11 +445,11 @@ const Index = () => {
             </CardContent>
           </Card>
         </DialogTrigger>
-        <DialogContent className="max-w-2xl h-[600px] overflow-hidden" aria-describedby="service-dialog-description">
+        <DialogContent className="w-full max-w-2xl max-h-[85vh] overflow-y-auto" aria-describedby="service-dialog-description">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold">{serviceData.title}</DialogTitle>
           </DialogHeader>
-          <div id="service-dialog-description" className="flex flex-col h-full space-y-4 overflow-hidden">
+          <div id="service-dialog-description" className="flex flex-col h-full space-y-4">
             <div className="flex-1 overflow-y-auto">
               <h3 className="text-lg font-semibold text-blue-600 mb-4">Required Documents:</h3>
               <div className="space-y-2">
@@ -487,10 +497,10 @@ const Index = () => {
             महाराष्ट्र ई-सेवा केंद्र
           </h1>
           <div className="hidden md:flex space-x-8 text-white">
-            <button onClick={() => scrollToSection('hero')} className="hover:text-orange-200 transition-colors">Home</button>
-            <button onClick={() => scrollToSection('rent-calculator')} className="hover:text-orange-200 transition-colors">Rent Agreement</button>
-            <button onClick={() => scrollToSection('services')} className="hover:text-orange-200 transition-colors">Services</button>
-            <button onClick={() => scrollToSection('contact')} className="hover:text-orange-200 transition-colors">Contact</button>
+            <button onClick={() => scrollToSection('hero')} className="hover:underline hover:text-blue-500 transition-colors">Home</button>
+            <button onClick={() => scrollToSection('rent-calculator')} className="hover:underline hover:text-blue-500 transition-colors">Rent Agreement</button>
+            <button onClick={() => scrollToSection('services')} className="hover:underline hover:text-blue-500 transition-colors">Services</button>
+            <button onClick={() => scrollToSection('contact')} className="hover:underline hover:text-blue-500 transition-colors">Contact</button>
           </div>
         </div>
       </nav>
@@ -498,6 +508,10 @@ const Index = () => {
       {/* Hero Section */}
       <section id="hero" className="py-12 bg-white">
         <div className="container mx-auto px-4">
+          <h1 className="text-4xl font-bold mb-6 bg-black text-white inline-block px-4 py-2 uppercase">VKW Enterprises</h1>
+          <div className="mb-6">
+            <img src="/maha-e-seva-banner.svg" alt="महाराष्ट्र ई-सेवा केंद्र" className="w-full max-w-lg" />
+          </div>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h1 className="text-4xl font-bold mb-4">Digital Services at Your Fingertips</h1>
@@ -511,13 +525,22 @@ const Index = () => {
                 </Button>
               </div>
             </div>
-            <div className="text-center">
-              <div className="bg-card rounded-lg shadow-lg overflow-hidden border border-gray-300 h-[360px] md:h-[420px] lg:h-[480px]">
-                <img 
-                  src={heroSectionNew} 
-                  alt="Maharashtra E-Seva Kendra - Complete Digital Services Platform with All Government Service Logos" 
-                  className="w-full h-full object-cover block"
-                />
+            <div className="flex justify-center lg:justify-end">
+              <div className="marquee-container w-full">
+                <div className="marquee-track">
+                  {/* Newly uploaded logos for marquee */}
+                  <img src="/lovable-uploads/PinClipart.com_17th-amendment-clipart_5745340.png" alt="Digital India" className="marquee-item" loading="lazy" />
+                  <img src="/lovable-uploads/imgbin_9bcf989abbd53219b698c9180e3a5a18.png" alt="FSSAI" className="marquee-item" loading="lazy" />
+                  <img src="/lovable-uploads/utiitsl-psa-pan-branch-1000x1000.png" alt="UTI PAN Service" className="marquee-item" loading="lazy" />
+                  <img src="/lovable-uploads/pngegg (1).png" alt="MSME" className="marquee-item" loading="lazy" />
+                  <img src="/lovable-uploads/pngegg.png" alt="Aadhaar" className="marquee-item" loading="lazy" />
+                  {/* Duplicate set for seamless looping */}
+                  <img src="/lovable-uploads/PinClipart.com_17th-amendment-clipart_5745340.png" alt="Digital India" className="marquee-item" loading="lazy" />
+                  <img src="/lovable-uploads/imgbin_9bcf989abbd53219b698c9180e3a5a18.png" alt="FSSAI" className="marquee-item" loading="lazy" />
+                  <img src="/lovable-uploads/utiitsl-psa-pan-branch-1000x1000.png" alt="UTI PAN Service" className="marquee-item" loading="lazy" />
+                  <img src="/lovable-uploads/pngegg (1).png" alt="MSME" className="marquee-item" loading="lazy" />
+                  <img src="/lovable-uploads/pngegg.png" alt="Aadhaar" className="marquee-item" loading="lazy" />
+                </div>
               </div>
             </div>
           </div>
@@ -535,7 +558,7 @@ const Index = () => {
           <div className="space-y-12">
             {/* Identity Documents */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-orange-500">Identity Documents</h3>
+              <h3 className="text-2xl font-bold mb-6 bg-[hsl(var(--brand-accent))] text-white text-center">Identity Documents</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <ServiceDialog 
                   serviceKey="aadhaar"
@@ -577,7 +600,7 @@ const Index = () => {
 
             {/* Certificates & Gazette */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-orange-500">Certificates & Gazette</h3>
+              <h3 className="text-2xl font-bold mb-6 bg-[hsl(var(--brand-accent))] text-white text-center">Certificates & Gazette</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <ServiceDialog 
                   serviceKey="income"
@@ -619,7 +642,7 @@ const Index = () => {
 
             {/* Business & Professional Services */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-orange-500">Business & Professional Services</h3>
+              <h3 className="text-2xl font-bold mb-6 bg-[hsl(var(--brand-accent))] text-white text-center">Business & Professional Services</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <ServiceDialog 
                   serviceKey="shopact"
@@ -661,7 +684,7 @@ const Index = () => {
 
             {/* Employment & Financial Services */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-orange-500">Employment & Financial Services</h3>
+              <h3 className="text-2xl font-bold mb-6 bg-[hsl(var(--brand-accent))] text-white text-center">Employment & Financial Services</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <ServiceDialog 
                   serviceKey="pf"
@@ -682,7 +705,7 @@ const Index = () => {
 
             {/* Property & Land Services */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-orange-500">Property & Land Services</h3>
+              <h3 className="text-2xl font-bold mb-6 bg-[hsl(var(--brand-accent))] text-white text-center">Property & Land Services</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <ServiceDialog 
                   serviceKey="rent"
@@ -717,7 +740,7 @@ const Index = () => {
 
             {/* Other Essential Services */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-orange-500">Other Essential Services</h3>
+              <h3 className="text-2xl font-bold mb-6 bg-[hsl(var(--brand-accent))] text-white text-center">Other Essential Services</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <ServiceDialog 
                   serviceKey="ration"
@@ -772,9 +795,9 @@ const Index = () => {
                     <Label className="text-gray-700 font-semibold">License Period (Months)</Label>
                     <Input
                       type="number"
-                      value={licensePeriod}
+                      value={licensePeriod === 0 ? '' : licensePeriod}
                       onChange={(e) => setLicensePeriod(parseInt(e.target.value) || 0)}
-                      placeholder="12"
+                      placeholder=""
                       min="1"
                       max="60"
                     />
@@ -786,7 +809,7 @@ const Index = () => {
                       type="number"
                       value={monthlyRent}
                       onChange={(e) => setMonthlyRent(e.target.value)}
-                      placeholder="10000"
+                      placeholder=""
                       min="1"
                     />
                   </div>
@@ -797,7 +820,7 @@ const Index = () => {
                       type="number"
                       value={deposit}
                       onChange={(e) => setDeposit(e.target.value)}
-                      placeholder="50000"
+                      placeholder=""
                       min="0"
                     />
                   </div>
@@ -817,7 +840,7 @@ const Index = () => {
                     </div>
                     <div>
                       <Label className="text-gray-700 font-semibold">Govt. Stamp Duty</Label>
-                      <div className="p-3 bg-neutral-medium rounded">₹{stampDuty.toLocaleString()}</div>
+                      <div className="p-3 bg-neutral-medium rounded">₹{govtStampDutyTenPercent.toLocaleString()}</div>
                     </div>
                   </div>
                 </div>
@@ -896,71 +919,37 @@ const Index = () => {
       {/* Contact Section */}
       <section id="contact" className="py-12 bg-brand-primary text-white">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-3xl font-bold mb-6" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
-                Contact महाराष्ट्र ई-सेवा केंद्र
-              </h3>
-              <div className="space-y-4 text-lg">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">📍</span>
-                  <span>Lane no3, Nagar Rd, Sai Satyam Park, Wagholi, Maharashtra 412207</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">📞</span>
-                  <span>+91 8956548048</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">✉️</span>
-                  <span>vwadekar753@gmail.com</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">🕒</span>
-                  <span>Mon-Sat: 9:00 AM - 7:00 PM</span>
-                </div>
-                <div className="mt-6">
-                  <a 
-                    href="https://wa.me/918956548048" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-                    </svg>
-                    Chat on WhatsApp
-                  </a>
-                </div>
+          <div className="mb-6">
+            <h3 className="text-3xl font-bold mb-6" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
+              Contact महाराष्ट्र ई-सेवा केंद्र
+            </h3>
+            <div className="space-y-4 text-lg">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">📍</span>
+                <span>Lane no3, Nagar Rd, Sai Satyam Park, Wagholi, Maharashtra 412207</span>
               </div>
-              
-              <div className="mt-6">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235.89380386720927!2d73.95971569258801!3d18.576791499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c3079f919531%3A0xdd471bb89413ad3!2sMah-E%20Seva%20Point!5e0!3m2!1sen!2sin!4v1759310800!5m2!1sen!2sin" 
-                  width="100%" 
-                  height="250" 
-                  style={{ border: 0 }} 
-                  allowFullScreen 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-lg shadow-lg"
-                ></iframe>
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">📞</span>
+                <span>+91 8956548048</span>
               </div>
-              
-              <div className="bg-card rounded-lg shadow-lg mt-8 overflow-hidden border border-gray-300 h-[140px] md:h-[180px] lg:h-[200px] flex items-center justify-center">
-                <img 
-                  src={contactFooterFinal} 
-                  alt="Maharashtra E-Seva Kendra - Digital India, Aadhaar, MSME Service Logos" 
-                  className="max-w-full max-h-full object-contain block"
-                />
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">✉️</span>
+                <span>vwadekar753@gmail.com</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🕒</span>
+                <span>Mon-Sat: 9:00 AM - 7:00 PM</span>
               </div>
             </div>
-            
-            <div>
-              <Card className="bg-neutral-medium">
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+            <div className="flex flex-col h-full">
+              <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-gray-800 text-xl">Get Quick Support</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="h-full">
                   {isContactSubmitted ? (
                     <div className="text-center py-8">
                       <div className="text-green-600 text-6xl mb-4">✅</div>
@@ -968,7 +957,7 @@ const Index = () => {
                       <p className="text-gray-600">Thank you for contacting us. We'll get back to you soon.</p>
                     </div>
                   ) : (
-                    <form onSubmit={handleContactSubmit}>
+                    <form onSubmit={handleContactSubmit} className="h-full">
                       <div className="space-y-4">
                         <Input 
                           placeholder="Your Name" 
@@ -992,18 +981,43 @@ const Index = () => {
                           onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
                           required
                         />
-                        <Button 
-                          type="submit" 
-                          className="w-full bg-brand-secondary hover:bg-brand-secondary/90 text-white py-3 text-lg"
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? "Sending..." : "📧 Send Message"}
+                      </div>
+                      <div className="mt-4">
+                        <Button type="submit" className="w-full bg-brand-secondary hover:bg-brand-secondary/90">
+                          Send Message
                         </Button>
                       </div>
                     </form>
                   )}
                 </CardContent>
               </Card>
+            </div>
+            <div className="flex flex-col h-full">
+              <div className="h-full">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235.89380386720927!2d73.95971569258801!3d18.576791499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c3079f919531%3A0xdd471bb89413ad3!2sMah-E%20Seva%20Point!5e0!3m2!1sen!2sin!4v1759310800!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full rounded-lg shadow-lg min-h-[250px]"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <div className="bg-black text-white rounded-lg p-8 shadow-xl flex flex-col gap-6">
+              <div>
+                <h2 className="text-4xl font-extrabold tracking-tight mb-3 uppercase">VKW Enterprises</h2>
+                <p className="text-gray-300">Your trusted partner for online services and documentation.</p>
+              </div>
+              <nav className="mt-8 space-y-3">
+                <Link href="/about" className="block rounded-md bg-white/10 hover:bg-white/20 px-4 py-3 transition-colors">About Us</Link>
+                <Link href="/terms" className="block rounded-md bg-white/10 hover:bg-white/20 px-4 py-3 transition-colors">Terms & Conditions</Link>
+              </nav>
             </div>
           </div>
         </div>

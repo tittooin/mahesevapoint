@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200" viewBox="0 0 800 200" role="img" aria-labelledby="title desc">
+  <title id="title">Digital India - Power to Empower</title>
+  <desc id="desc">Simplified vector rendition of the Digital India emblem with swoosh and text</desc>
+  <rect width="100%" height="100%" fill="transparent"/>
+  <!-- Swoosh emblem -->
+  <g transform="translate(40,30)">
+    <path d="M0,80 C60,10 160,10 220,80" fill="none" stroke="#F36F21" stroke-width="24" stroke-linecap="round"/>
+    <path d="M20,100 C90,30 190,30 250,100" fill="none" stroke="#1E7E34" stroke-width="24" stroke-linecap="round"/>
+    <circle cx="155" cy="72" r="10" fill="#0B6A39"/>
+    <rect x="145" y="45" width="20" height="18" rx="2" fill="#0B6A39"/>
+  </g>
+  <!-- Text -->
+  <g font-family="Inter, Arial, sans-serif" font-weight="700">
+    <text x="300" y="85" font-size="48" fill="#333">Digital India</text>
+    <text x="300" y="125" font-size="22" fill="#666">Power To Empower</text>
+  </g>
+</svg>
