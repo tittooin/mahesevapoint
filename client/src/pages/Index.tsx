@@ -303,8 +303,7 @@ const Index = () => {
     const depositNum = parseFloat(deposit) || 0;
     
     // Fixed charges
-    -    const govtRegFee = 1000;
-    +    const govtRegFee = propertyArea === 'Rural' ? 500 : 1000;
+    const govtRegFee = propertyArea === 'Rural' ? 500 : 1000;
      const dhcFee = 300;
      const serviceFee = 599;
 
