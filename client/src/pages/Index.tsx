@@ -324,11 +324,11 @@ const Index = () => {
     // Add 10% of deposit amount to the total
     const depositTenPercent = Math.round(depositNum * 0.1);
     
-    // Subtotal before 10% Govt. Stamp Duty
-    const subtotal = govtRegFee + dhcFee + serviceFee + calculatedStampDuty + addonsTotal + depositTenPercent;
+    // Subtotal before Govt. Stamp Duty
+    const subtotal = govtRegFee + dhcFee + serviceFee + calculatedStampDuty + addonsTotal;
     
-    // Govt. Stamp Duty (10%) applied on subtotal
-    const calculatedGovtStampDutyTenPercent = Math.round(subtotal * 0.10);
+    // Govt. Stamp Duty (10%) applied only on deposit
+    const calculatedGovtStampDutyTenPercent = depositTenPercent;
     
     // Final total
     const total = subtotal + calculatedGovtStampDutyTenPercent;
