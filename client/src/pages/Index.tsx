@@ -307,12 +307,17 @@ const Index = () => {
     const dhcFee = 300;
     const serviceFee = 599;
 
-    // Calculate stamp duty (0.25% of total rent) - only if we have valid rent data
+    // Calculate stamp duty per formula:
+    // D = (Monthly Rent x No. of Months) + (10% x Refundable Deposit x No. of Years)
+    // Stamp Duty = 0.25% of D
     let calculatedStampDuty = 0;
-    if (monthlyRent && monthlyRentNum > 0 && licensePeriod > 0) {
-      const totalRent = monthlyRentNum * licensePeriod;
-      calculatedStampDuty = Math.round(totalRent * 0.0025);
-    }
+    const months = licensePeriod > 0 ? licensePeriod : 0;
+    const years = months > 0 ? Math.ceil(months / 12) : 0;
+    const totalRentPeriod = monthlyRentNum > 0 ? monthlyRentNum * months : 0;
+    const refundableDepositNum = depositNum > 0 ? depositNum : 0;
+    const tenPercentDepositPerYear = Math.round(refundableDepositNum * 0.10 * years);
+    const D = totalRentPeriod + tenPercentDepositPerYear;
+    calculatedStampDuty = Math.round(D * 0.0025);
 
     // Calculate add-ons
     let addonsTotal = 0;
@@ -321,29 +326,22 @@ const Index = () => {
     if (addons.extraVisitOut) addonsTotal += 2000;
     if (addons.remoteAssist) addonsTotal += 2000;
 
-    // Add 10% of deposit amount to the total
-    const depositTenPercent = Math.round(depositNum * 0.1);
-    
-    // Subtotal before Govt. Stamp Duty
+    // Subtotal excludes advance rent and non-refundable deposit; includes fixed charges and stamp duty
     const subtotal = govtRegFee + dhcFee + serviceFee + calculatedStampDuty + addonsTotal;
-    
-    // Govt. Stamp Duty (10%) applied only on deposit
-    const calculatedGovtStampDutyTenPercent = depositTenPercent;
-    
+
     // Final total
-    const total = subtotal + calculatedGovtStampDutyTenPercent;
-    
+    const total = subtotal;
+
     setStampDuty(calculatedStampDuty);
-    setGovtStampDutyTenPercent(calculatedGovtStampDutyTenPercent);
     setTotalAmount(total);
     setIsCalculated(true);
-    
+
     console.log('Calculation complete:', {
-      totalRent: monthlyRentNum * licensePeriod,
+      totalRent: totalRentPeriod,
+      D,
+      years,
       stampDuty: calculatedStampDuty,
       addonsTotal,
-      depositTenPercent,
-      govtStampDutyTenPercent: calculatedGovtStampDutyTenPercent,
       total
     });
   };
@@ -840,7 +838,7 @@ const Index = () => {
                     </div>
                     <div>
                       <Label className="text-gray-700 font-semibold">Govt. Stamp Duty</Label>
-                      <div className="p-3 bg-neutral-medium rounded">₹{govtStampDutyTenPercent.toLocaleString()}</div>
+                      <div className="p-3 bg-neutral-medium rounded">₹{stampDuty.toLocaleString()}</div>
                     </div>
                   </div>
                 </div>
