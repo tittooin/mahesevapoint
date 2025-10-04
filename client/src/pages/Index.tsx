@@ -921,7 +921,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="mb-6">
             <h3 className="text-3xl font-bold mb-6" style={{ fontFamily: "'Tiro Devanagari Marathi', serif" }}>
-              Contact महाराष्ट्र ई-सेवा केंद्र
+              महाराष्ट्र ई-सेवा केंद्र
             </h3>
             <div className="space-y-4 text-lg">
               <div className="flex items-center gap-3">
@@ -1009,14 +1009,14 @@ const Index = () => {
           </div>
 
           <div className="mt-8">
-            <div className="bg-black text-white rounded-lg p-8 shadow-xl flex flex-col gap-6">
+            <div className="bg-brand-primary text-white rounded-lg p-8 shadow-xl flex flex-col gap-6">
               <div>
                 <h2 className="text-4xl font-extrabold tracking-tight mb-3 uppercase">VKW Enterprises</h2>
-                <p className="text-gray-300">Your trusted partner for online services and documentation.</p>
+                <p className="text-white/90">Your trusted partner for online services and documentation.</p>
               </div>
               <nav className="mt-8 space-y-3">
-                <Link href="/about" className="block rounded-md bg-white/10 hover:bg-white/20 px-4 py-3 transition-colors">About Us</Link>
-                <Link href="/terms" className="block rounded-md bg-white/10 hover:bg-white/20 px-4 py-3 transition-colors">Terms & Conditions</Link>
+                <Link href="/about" className="block rounded-md bg-white/20 hover:bg-white/30 text-white px-4 py-3 transition-colors">About Us</Link>
+                <Link href="/terms" className="block rounded-md bg-white/20 hover:bg-white/30 text-white px-4 py-3 transition-colors">Terms & Conditions</Link>
               </nav>
             </div>
           </div>
