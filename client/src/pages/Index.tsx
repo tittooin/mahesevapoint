@@ -508,7 +508,7 @@ const Index = () => {
       {/* Hero Section */}
       <section id="hero" className="py-12 bg-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-6 bg-black text-white inline-block px-4 py-2 uppercase">VKW Enterprises</h1>
+          <h1 className="text-4xl font-bold mb-6 text-purple-700 uppercase">VKW Enterprises</h1>
           <div className="mb-6">
             <img src="/maha-e-seva-banner.svg" alt="महाराष्ट्र ई-सेवा केंद्र" className="w-full max-w-lg" />
           </div>
