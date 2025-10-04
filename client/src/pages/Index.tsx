@@ -303,9 +303,10 @@ const Index = () => {
     const depositNum = parseFloat(deposit) || 0;
     
     // Fixed charges
-    const govtRegFee = 1000;
-    const dhcFee = 300;
-    const serviceFee = 599;
+    -    const govtRegFee = 1000;
+    +    const govtRegFee = propertyArea === 'Rural' ? 500 : 1000;
+     const dhcFee = 300;
+     const serviceFee = 599;
 
     // Calculate stamp duty per formula:
     // D = (Monthly Rent x No. of Months) + (10% x Refundable Deposit x No. of Years)
@@ -830,7 +831,7 @@ const Index = () => {
                   <div className="grid md:grid-cols-3 gap-4">
                     <div>
                       <Label className="text-gray-700 font-semibold">Govt. Reg Charges</Label>
-                      <div className="p-3 bg-neutral-medium rounded">₹1,000</div>
+                      <div className="p-3 bg-neutral-medium rounded">₹{(propertyArea === 'Rural' ? 500 : 1000).toLocaleString()}</div>
                     </div>
                     <div>
                       <Label className="text-gray-700 font-semibold">Govt. DHC</Label>
